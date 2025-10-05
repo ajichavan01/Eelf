@@ -87,6 +87,8 @@ public class CreatureStatsWindow {
         cp+=AddField("Hungry",1,Vitals.IsHungry());
         cp+=AddField("Pregnant",1,false);
         cp+=AddField("Speed",1,Genes.GetSpeed(),Physics.GetCurrentSpeed());
+        cp+=AddField("Tail Speed Modifier",2,Physics.GetTailSpeedMod(),Physics.GetCurrentTailSpeedMod());
+        cp+=AddField("Mass Speed Modifier", 2,Physics.GetMassSpeedMod(),Physics.GetCurrentMassSpeedMod());
         cp+=AddField("MaxTurnAngle",1,Genes.GetMaxTurnAngle(),Physics.GetCurrentTurnAngle());
         cp+=AddSection("Location Info",1);
         cp+=AddField("Type",2,CurrentCreature.GetTargetObject().ObjectTypeInRange().toString());
@@ -96,6 +98,7 @@ public class CreatureStatsWindow {
 
         String bp=AddSection("Body Info",0);
         bp+=AddField("Length",1,Genes.GetBodyLength(),Body.GetBodyLength());
+        bp+=AddField("Mass",1,Genes.GetMassPercentage(),Body.GetCurrentBodyMass());
         bp+=AddField("Width",1,Genes.GetBodyWidth(),Body.GetCurrentBodyWidth());
         bp+=AddField("Height",1,Genes.GetBodyHeight(),Body.GetCurrentBodyHeight());
         bp+=AddField("Tapper",1,Genes.GetBodyTaper());
@@ -119,7 +122,6 @@ public class CreatureStatsWindow {
         bp+=AddField("Width",2,Genes.GetTailWidthPercentage(),Body.GetCurrentTailWidth());
         bp+=AddField("Height",2,Genes.GetTailHeightPercentage(),Body.GetCurrentTailHeight());
         bp+=AddField("Color",2,Genes.GetFlipperColor(),Body.GetCurrentTailColor());
-        bp+=AddField("Modifier",2,Physics.GetTailSpeedMod(),Physics.GetCurrentTailSpeedMod());
 
         String ap=AddSection("Age Info",0);
         ap+=AddField("Age",1, Vitals.GetLifeSpan(), Vitals.GetAge());

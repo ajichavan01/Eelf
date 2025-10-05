@@ -61,9 +61,10 @@ public class CreaturePhysics{
             System.out.println("TailSpeedMod=" + TailSpeedMod);
         }
         if(true){
-            MassSpeedMod=1f-(Mass/MassMax);
+            float MassUsedForSpeedMod=GeneMinMax.MassSpeedModMinPercentage + (Body.GetCurrentBodyMass() * (GeneMinMax.MassSpeedModMaxPercentage-GeneMinMax.MassSpeedModMinPercentage));
+            MassSpeedMod=MassUsedForSpeedMod * GameParameters.MassSpeedModifierPercentage;
         }
-        CurrentSpeed= BaseSpeed + TailSpeedMod;// + MassSpeedMod;
+        CurrentSpeed= BaseSpeed + TailSpeedMod + MassSpeedMod;
         return CurrentSpeed;
     }
 
@@ -118,4 +119,10 @@ public class CreaturePhysics{
     public float GetCurrentTailSpeedMod(){
         return TailSpeedMod;
     }
+
+    public float GetMassSpeedMod(){
+        return GeneMinMax.MassSpeedModMinPercentage + (Genes.GetMassPercentage() * (GeneMinMax.MassSpeedModMaxPercentage-GeneMinMax.MassSpeedModMinPercentage));
+        //return MassSpeedMod;
+    }
+    public float GetCurrentMassSpeedMod(){return MassSpeedMod;}
 }

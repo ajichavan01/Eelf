@@ -66,6 +66,7 @@ public class CreatureGeneValues{
     private final float receptorSensitivity;
     private final float maxHealth;
     private final float healthIncreasePercentage;
+    public final float massPercentage;
 
     public CreatureGeneValues(Genome genome){
 
@@ -125,6 +126,7 @@ public class CreatureGeneValues{
         receptorSensitivity=dna.GetGene(GeneID.ReceptorsSensitivity);
         maxHealth=GeneMinMax.HealthMin+(dna.GetGene(GeneID.MaxHealth)*(GeneMinMax.HealthMax-GeneMinMax.HealthMin));
         healthIncreasePercentage=dna.GetGene(GeneID.IncreaseHealthPercentage);
+        massPercentage=dna.GetGene(GeneID.MassPercentage);
     }
 
     public Genome GetBaseDNA(){
@@ -335,6 +337,8 @@ public class CreatureGeneValues{
     public float GetMaxHealth() {return maxHealth;}
 
     public float GetIncreaseHealthPercentage() {return healthIncreasePercentage;}
+
+    public float GetMassPercentage(){return massPercentage;}
 
     //public String ExportDNA(){
     //  String newdna="";

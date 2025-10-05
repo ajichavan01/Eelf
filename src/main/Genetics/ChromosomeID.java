@@ -5,7 +5,7 @@ public class ChromosomeID {
     static final int Vision=1;
     static final int Aging=2;
     static final int Mouth=3;
-    static final int Digestion=4;
+    static final int Gender=4;
     static final int Metabolism=5;
     static final int Reproduction=6;
     static final int Physics=7;

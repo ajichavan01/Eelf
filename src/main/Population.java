@@ -97,6 +97,7 @@ public class Population {
 
         newGenome.SetGeneInChromosome(GeneID.MovementSpeed, gGenesDef.GetGene(GeneID.MovementSpeed).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MaxTurnAngle, gGenesDef.GetGene(GeneID.MaxTurnAngle).RandomValue());
+        newGenome.SetGeneInChromosome(GeneID.MassPercentage, gGenesDef.GetGene(GeneID.MassPercentage).RandomValue());
 
         newGenome.SetGeneInChromosome(GeneID.MouthSize, gGenesDef.GetGene(GeneID.MouthSize).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.BiteStrength, gGenesDef.GetGene(GeneID.BiteStrength).RandomValue());

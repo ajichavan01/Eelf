@@ -49,5 +49,7 @@ public class GeneMinMax {
     public static final float BirthEnergyCostMin = 5;
     public static final float BirthGestationEnergyCostMax = 0;
     public static final float BirthGestationEnergyCostMin = 0;
+    public static final float BodyDistanceBetweenSegmentsMax=1.0f;
+    public static final float BodyDistanceBetweenSegmentsMin=0.5f;
 }
 

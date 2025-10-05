@@ -71,7 +71,8 @@ public class CreatureGeneValues{
     public CreatureGeneValues(Genome genome){
 
         dna=genome;
-        bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
+        bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (0.01f * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
+        //bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
         bodyHeight = GeneMinMax.BodyHeightMin + (dna.GetGene(GeneID.BodyHeight) * (GeneMinMax.BodyHeightMax-GeneMinMax.BodyHeightMin));
         biteStrength= GeneMinMax.BiteStrengthMin + (dna.GetGene(GeneID.BiteStrength) * (GeneMinMax.BiteStrengthMax - GeneMinMax.BiteStrengthMin));
         birthRecoveryTime=GeneMinMax.BirthRecoveryMin + (dna.GetGene(GeneID.BirthRecoveryTime) * (GeneMinMax.BirthRecoveryMax-GeneMinMax.BirthRecoveryMin));
@@ -122,7 +123,7 @@ public class CreatureGeneValues{
         visionClarity=dna.GetGene(GeneID.VisionClarity);
         visionDistance=GeneMinMax.VisionDistanceMin + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax-GeneMinMax.VisionDistanceMin));
         visionScanFreq = GeneMinMax.VisionScanFreqMin + (dna.GetGene(GeneID.VisionScanFreq) * (GeneMinMax.VisionScanFreqMax-GeneMinMax.VisionScanFreqMin));
-        bodyDistanceBetweenSegments=bodyHeight*dna.GetGene(GeneID.BodyDistanceBetweenSegments);
+        bodyDistanceBetweenSegments=bodyHeight* (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments) * (GeneMinMax.BodyDistanceBetweenSegmentsMax-GeneMinMax.BodyDistanceBetweenSegmentsMin)));
         receptorSensitivity=dna.GetGene(GeneID.ReceptorsSensitivity);
         maxHealth=GeneMinMax.HealthMin+(dna.GetGene(GeneID.MaxHealth)*(GeneMinMax.HealthMax-GeneMinMax.HealthMin));
         healthIncreasePercentage=dna.GetGene(GeneID.IncreaseHealthPercentage);

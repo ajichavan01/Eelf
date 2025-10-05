@@ -40,7 +40,6 @@ public class CreatureBody{
         FlippersSegmentID=-1;
         TailSegmentID=-1;
 
-
         //get gene values
         HeadShape=CGV.GetHeadShape();
 
@@ -103,14 +102,19 @@ public class CreatureBody{
         }
         if (FlipperPresent){
             Flippers f=new Flippers();
-            f.InitializeSegment(x,y,GetCurrentBodyWidth(),GetCurrentBodyHeight(),0,GetCurrentBodyDistanceBetweenSegments(), GetCurrentFlipperColor());
-            f.SetFlipperHeight(GetCurrentFlipperHeight());
-            f.SetFlipperWidth(GetCurrentFlipperWidth());
             int connectorOffset=0;
             if (GetCurrentFlipperHeight()>GetCurrentBodyDistanceBetweenSegments()) {
-                connectorOffset= (int) Math.floor(GetCurrentFlipperHeight()/GetCurrentBodyDistanceBetweenSegments());
+                connectorOffset= (int) Math.floor(GetCurrentFlipperHeight()/GetCurrentBodyDistanceBetweenSegments())-1;
+            }
+            if (connectorOffset + GameParameters.FlippersSegmentConnected>GetBodyLength()) {
+                connectorOffset=GetBodyLength()-GameParameters.FlippersSegmentConnected;
             }
             f.SetSegmentConnectedTo(GameParameters.FlippersSegmentConnected+connectorOffset);
+            BodySegment connectedSegment=Body.get(f.GetSegmentConnectedTo());
+            f.InitializeSegment(connectedSegment.GetSegmentX(),connectedSegment.GetSegmentY(),connectedSegment.GetSegmentWidth(),connectedSegment.GetSegmentHeight(),0,GetCurrentBodyDistanceBetweenSegments(), GetCurrentFlipperColor());
+            f.SetFlipperHeight(GetCurrentFlipperHeight());
+            f.SetFlipperWidth(GetCurrentFlipperWidth());
+
             Body.add(f);
             FlippersSegmentID=Body.size()-1;
         }
@@ -118,18 +122,19 @@ public class CreatureBody{
             Tail t=new Tail();
             t.InitializeSegment(x-(GetBodyLength()-GameParameters.TailSegmentOffsetFromEnd),
                     y,
-                    GetCurrentBodyWidth()-DetermineTaper(GetCurrentBodyWidth(),GetBodyLength()-2-GameParameters.TailSegmentOffsetFromEnd,GetBodyLength()),
-                    GetCurrentBodyHeight()-DetermineTaper(GetCurrentBodyWidth(),GetBodyLength()-2-GameParameters.TailSegmentOffsetFromEnd,GetBodyLength()),
+                    GetCurrentBodyWidth()-DetermineTaper(GetCurrentBodyWidth(),GetBodyLength() - 2 - GameParameters.TailSegmentOffsetFromEnd,GetBodyLength()),
+                    GetCurrentBodyHeight()-DetermineTaper(GetCurrentBodyWidth(),GetBodyLength() - 2 - GameParameters.TailSegmentOffsetFromEnd,GetBodyLength()),
                     0,GetCurrentBodyDistanceBetweenSegments(),
                     GetCurrentTailColor());
             t.SetTailWidth(GetCurrentTailWidth());
             t.SetTailHeight(GetCurrentTailHeight());
-            t.SetSegmentConnectedTo(GetBodyLength()- 2- GameParameters.TailSegmentOffsetFromEnd);
+            t.SetSegmentConnectedTo(GetBodyLength() - 2 - GameParameters.TailSegmentOffsetFromEnd);
             Body.add(t);
             TailSegmentID=Body.size()-1;
         }
 
-        //println("CreatureBody.CreateBody - CalculateBodyMass: " + CalculateBodyMass());
+        Mass=CalculateBodyMass();
+        System.out.println("CreatureBody.CreateBody - CalculateBodyMass: " + CalculateBodyMass());
     }
 
     public void UpdateBody(){
@@ -167,6 +172,8 @@ public class CreatureBody{
         }
         if (GetFlipperPresent() && GetBodySegment(FlippersSegmentID).BodySegmentType() == SegmentID.Flippers) {
             Flippers flippers=(Flippers) GetBodySegment(FlippersSegmentID);
+            BodySegment connectedSegment=Body.get(flippers.GetSegmentConnectedTo());
+            flippers.InitializeSegment(connectedSegment.GetSegmentX(),connectedSegment.GetSegmentY(),connectedSegment.GetSegmentWidth(),connectedSegment.GetSegmentHeight(),0,GetCurrentBodyDistanceBetweenSegments(), GetCurrentFlipperColor());
             flippers.SetFlipperHeight(GetCurrentFlipperHeight());
             flippers.SetFlipperWidth(GetCurrentFlipperWidth());
             flippers.UpdateSegment(GetBodySegment(flippers.GetSegmentConnectedTo()));
@@ -287,7 +294,7 @@ public class CreatureBody{
         for (BodySegment bs : Body) {
             SegmentID si = bs.BodySegmentType();
             if (si == SegmentID.Head || si == SegmentID.Segment) {
-                Mass += bs.GetSegmentWidth() + bs.GetSegmentHeight();
+                Mass += bs.GetSegmentWidth() * bs.GetSegmentHeight();
             }
         }
         return Mass;
@@ -312,9 +319,9 @@ public class CreatureBody{
     //public void SetCurrentFlipperHeight(float value){CurrentFlipperHeight=value;}
     public float GetCurrentFlipperWidth(){return CGV.GetFlipperWidth() * Vitals.GetMaturity();}
     //public void SetCurrentFlipperWidth(float value){CurrentFlipperWidth=value;}
-    public float GetCurrentTailHeight(){return (CGV.GetTailHeightPercentage()*CGV.GetBodyHeight()) * Vitals.GetMaturity();}
+    public float GetCurrentTailHeight(){return ((CGV.GetTailHeightPercentage()*CGV.GetBodyHeight())) * Vitals.GetMaturity();}
     //public void SetCurrentTailHeight(float value){CurrentTailHeight=value;}
-    public float GetCurrentTailWidth(){return (CGV.GetTailWidthPercentage()*CGV.GetBodyWidth()) * Vitals.GetMaturity();}
+    public float GetCurrentTailWidth(){return ((CGV.GetTailWidthPercentage()*CGV.GetBodyWidth())) * Vitals.GetMaturity();}
     //public void SetCurrentTailWidth(float value){CurrentTailWidth=value;}
     public float GetCurrentMouthSize(){return CGV.GetMouthSize() * Vitals.GetMaturity();}
     public float GetCurrentEyeSize(){return CGV.GetEyeSize() * Vitals.GetMaturity();}

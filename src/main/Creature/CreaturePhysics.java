@@ -55,16 +55,18 @@ public class CreaturePhysics{
         if (PauseSpeed){
             return 0;
         }
-        if(TailWidthPercentage>= GameParameters.TailThresholdForSpeedMod){
+
+        if(Body.GetTailPresent() && TailWidthPercentage>= GameParameters.TailThresholdForSpeedMod){
             TailSpeedMod=GeneMinMax.TailSpeedModMinPercentage + (Body.GetCurrentTailWidthPercentage() * (GeneMinMax.TailSpeedModMaxPercentage-GeneMinMax.TailSpeedModMinPercentage));
             System.out.println("GetCurrentTailWidthPercentage=" + Body.GetCurrentTailWidthPercentage());
             System.out.println("TailSpeedMod=" + TailSpeedMod);
         }
         if(true){
-            float MassUsedForSpeedMod=GeneMinMax.MassSpeedModMinPercentage + (Body.GetCurrentBodyMass() * (GeneMinMax.MassSpeedModMaxPercentage-GeneMinMax.MassSpeedModMinPercentage));
+            float temp=Genes.GetMassPercentage();
+            float MassUsedForSpeedMod=Body.GetCurrentBodyMass() * Genes.GetMassPercentage();
             MassSpeedMod=MassUsedForSpeedMod * GameParameters.MassSpeedModifierPercentage;
         }
-        CurrentSpeed= BaseSpeed + TailSpeedMod + MassSpeedMod;
+        CurrentSpeed= BaseSpeed + TailSpeedMod - MassSpeedMod;
         return CurrentSpeed;
     }
 
@@ -121,8 +123,9 @@ public class CreaturePhysics{
     }
 
     public float GetMassSpeedMod(){
-        return GeneMinMax.MassSpeedModMinPercentage + (Genes.GetMassPercentage() * (GeneMinMax.MassSpeedModMaxPercentage-GeneMinMax.MassSpeedModMinPercentage));
-        //return MassSpeedMod;
+        //return GeneMinMax.MassSpeedModMinPercentage + (Genes.GetMassPercentage() * (GeneMinMax.MassSpeedModMaxPercentage-GeneMinMax.MassSpeedModMinPercentage));
+        float MassUsedForSpeedMod=Body.GetBodyMass() * Genes.GetMassPercentage();
+        return MassUsedForSpeedMod * GameParameters.MassSpeedModifierPercentage;
     }
     public float GetCurrentMassSpeedMod(){return MassSpeedMod;}
 }

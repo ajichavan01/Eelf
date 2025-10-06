@@ -19,6 +19,8 @@ public class GeneMinMax {
     public static final float TailSpeedModMinPercentage=0.1f;
     public static final float TailHeightMaxPercentage = 1.0f;
     public static final float TailHeightMinPercentage = 0.5f;
+    public static final float MassSpeedModMaxPercentage=1.0f;
+    public static final float MassSpeedModMinPercentage=0.1f;
     public static final float FlipperWidthMax = 20f;
     public static final float FlipperWidthMin = 1f;
     public static final float FlipperHeightMax = 10f;
@@ -47,5 +49,7 @@ public class GeneMinMax {
     public static final float BirthEnergyCostMin = 5;
     public static final float BirthGestationEnergyCostMax = 0;
     public static final float BirthGestationEnergyCostMin = 0;
+    public static final float BodyDistanceBetweenSegmentsMax=1.0f;
+    public static final float BodyDistanceBetweenSegmentsMin=0.5f;
 }
 

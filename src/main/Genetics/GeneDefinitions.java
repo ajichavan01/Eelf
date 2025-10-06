@@ -124,6 +124,9 @@ public class GeneDefinitions {
         geneBase=new GeneBase(true,  0.01f,   0.05f, 0.005f,  0.0f, true,    "Determines how tight an angle a creature can turn", GeneID.MaxTurnAngle, locationOnChromosome,"GeneID.MaxTurnAngle", ChromosomeID.Physics);
         genes.set(GeneID.MaxTurnAngle,geneBase);
 
+        geneBase=new GeneBase(true,  0.01f,   0.05f, 0.005f,  0.0f, true,    "Determines the percentage heavy or lighter each unit of mass is.", GeneID.MassPercentage, locationOnChromosome,"GeneID.MassPercentage", ChromosomeID.Physics);
+        genes.set(GeneID.MassPercentage,geneBase);
+
         //Mouth
         locationOnChromosome =0;
         geneBase=new GeneBase(true,  0.50f,   1.00f, 0.1f,  0.0f, true,    "Determines the size of the mouth.", GeneID.MouthSize, locationOnChromosome++,"GeneID.MouthSize", ChromosomeID.Mouth);
@@ -213,6 +216,8 @@ public class GeneDefinitions {
         //ScentRedDropOff=109;
         //ScentGreenDropOff=110;
         //ScentBlueDropOff=111;
+
+        //Gender
     }
 
     public GeneBase GetGene(int index){

@@ -6,6 +6,7 @@ import main.Genetics.GeneID;
 import java.awt.*;
 import java.util.ArrayList;
 
+
 public class CreatureGeneValues{
 
     //variables set initial by genes
@@ -55,6 +56,7 @@ public class CreatureGeneValues{
     private final float tailHeightPercentage;
     private final float tailWidthPercentage;
     private final float tailPresent;
+    //private final float flipperColorDeviation;
     private final int flipperColorBlue;
     private final int flipperColorGreen;
     private final int flipperColorRed;
@@ -64,11 +66,13 @@ public class CreatureGeneValues{
     private final float receptorSensitivity;
     private final float maxHealth;
     private final float healthIncreasePercentage;
+    public final float massPercentage;
 
     public CreatureGeneValues(Genome genome){
 
         dna=genome;
-        bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
+        bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (0.01f * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
+        //bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
         bodyHeight = GeneMinMax.BodyHeightMin + (dna.GetGene(GeneID.BodyHeight) * (GeneMinMax.BodyHeightMax-GeneMinMax.BodyHeightMin));
         biteStrength= GeneMinMax.BiteStrengthMin + (dna.GetGene(GeneID.BiteStrength) * (GeneMinMax.BiteStrengthMax - GeneMinMax.BiteStrengthMin));
         birthRecoveryTime=GeneMinMax.BirthRecoveryMin + (dna.GetGene(GeneID.BirthRecoveryTime) * (GeneMinMax.BirthRecoveryMax-GeneMinMax.BirthRecoveryMin));
@@ -85,6 +89,7 @@ public class CreatureGeneValues{
         bodyColorRed=(int) Math.floor(dna.GetGene(GeneID.BodyColorRed));
         bodyColorGreen=(int) Math.floor(dna.GetGene(GeneID.BodyColorGreen));
         bodyColorBlue=(int) Math.floor(dna.GetGene(GeneID.BodyColorBlue));
+        //flipperColorDeviation=-0.5f; //dna.GetGene(GeneID.FlipperColorDeviation);
         flipperColorRed=(int) Math.floor(dna.GetGene(GeneID.FlipperColorRed));
         flipperColorGreen=(int) Math.floor(dna.GetGene(GeneID.FlipperColorGreen));
         flipperColorBlue=(int) Math.floor(dna.GetGene(GeneID.FlipperColorBlue));
@@ -118,10 +123,11 @@ public class CreatureGeneValues{
         visionClarity=dna.GetGene(GeneID.VisionClarity);
         visionDistance=GeneMinMax.VisionDistanceMin + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax-GeneMinMax.VisionDistanceMin));
         visionScanFreq = GeneMinMax.VisionScanFreqMin + (dna.GetGene(GeneID.VisionScanFreq) * (GeneMinMax.VisionScanFreqMax-GeneMinMax.VisionScanFreqMin));
-        bodyDistanceBetweenSegments=bodyHeight*dna.GetGene(GeneID.BodyDistanceBetweenSegments);
+        bodyDistanceBetweenSegments=bodyHeight* (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments) * (GeneMinMax.BodyDistanceBetweenSegmentsMax-GeneMinMax.BodyDistanceBetweenSegmentsMin)));
         receptorSensitivity=dna.GetGene(GeneID.ReceptorsSensitivity);
         maxHealth=GeneMinMax.HealthMin+(dna.GetGene(GeneID.MaxHealth)*(GeneMinMax.HealthMax-GeneMinMax.HealthMin));
         healthIncreasePercentage=dna.GetGene(GeneID.IncreaseHealthPercentage);
+        massPercentage=dna.GetGene(GeneID.MassPercentage);
     }
 
     public Genome GetBaseDNA(){
@@ -165,6 +171,7 @@ public class CreatureGeneValues{
         return flipperWidth;
     }
 
+    //public float GetFlipperColorDeviation(){return flipperColorDeviation;}
     public Color GetFlipperColor(){
         return new Color(flipperColorRed,flipperColorGreen,flipperColorBlue);
     }
@@ -331,6 +338,8 @@ public class CreatureGeneValues{
     public float GetMaxHealth() {return maxHealth;}
 
     public float GetIncreaseHealthPercentage() {return healthIncreasePercentage;}
+
+    public float GetMassPercentage(){return massPercentage;}
 
     //public String ExportDNA(){
     //  String newdna="";

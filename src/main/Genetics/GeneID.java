@@ -2,29 +2,27 @@ package main.Genetics;
 
 public class GeneID {  //Body Chromosome
     public static final int BodyLength=0;
-    public static final int MovementSpeed=1;
-    public static final int HeadShape=2;
-    public static final int BodyHeight=3;
-    public static final int BodyColorRed=4;
-    public static final int BodyColorGreen=5;
-    public static final int BodyColorBlue=6;
-    public static final int SkinToughness=7;
-    public static final int BodyTaper=8;
-    public static final int BodyWidth=9;
-    public static final int MaxTurnAngle=10;
-    public static final int FlipperPresent=11;
-    public static final int FlipperHeight=12;
-    public static final int FlipperWidth=13;
-    public static final int TailPresent=14;
-    public static final int TailHeightPercentage=15;
-    public static final int TailWidthPercentage=16;
-    public static final int BodyDistanceBetweenSegments=17;
-    public static final int FlipperColorRed=18;
-    public static final int FlipperColorGreen=19;
-    public static final int FlipperColorBlue=20;
-    public static final int TailColorRed=21;
-    public static final int TailColorGreen=22;
-    public static final int TailColorBlue=23;
+    public static final int HeadShape=1;
+    public static final int BodyHeight=2;
+    public static final int BodyColorRed=3;
+    public static final int BodyColorGreen=4;
+    public static final int BodyColorBlue=5;
+    public static final int SkinToughness=6;
+    public static final int BodyTaper=7;
+    public static final int BodyWidth=8;
+    public static final int FlipperPresent=9;
+    public static final int FlipperHeight=10;
+    public static final int FlipperWidth=11;
+    public static final int TailPresent=12;
+    public static final int TailHeightPercentage=13;
+    public static final int TailWidthPercentage=14;
+    public static final int BodyDistanceBetweenSegments=15;
+    public static final int FlipperColorRed=16;
+    public static final int FlipperColorGreen=17;
+    public static final int FlipperColorBlue=18;
+    public static final int TailColorRed=19;
+    public static final int TailColorGreen=20;
+    public static final int TailColorBlue=21;
 
     //Vision Chromosome
     public static final int VisionAngle=30;
@@ -64,6 +62,12 @@ public class GeneID {  //Body Chromosome
     public static final int BirthRecoveryTime=71;
     public static final int BirthEnergyCost=72;
     public static final int GestationPeriod=73;
+
+
+    //Physics Chromosome
+    public static final int MassPercentage=80;
+    public static final int MaxTurnAngle=81;
+    public static final int MovementSpeed=82;
 
     //Olfactory Chromosome
     public static final int ReceptorsSensitivity=90;

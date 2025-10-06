@@ -15,7 +15,7 @@ public class Genome{
         chromosomes.add(new Chromosome(ChromosomeLength.Vision)); //Vision
         chromosomes.add(new Chromosome(ChromosomeLength.Aging)); //Aging
         chromosomes.add(new Chromosome(ChromosomeLength.Mouth)); //Mouth
-        chromosomes.add(new Chromosome(ChromosomeLength.Digestion)); //Digestion
+        chromosomes.add(new Chromosome(ChromosomeLength.Gender)); //Digestion
         chromosomes.add(new Chromosome(ChromosomeLength.Metabolism)); //Metabolism
         chromosomes.add(new Chromosome(ChromosomeLength.Reproduction)); //Reproduction
         chromosomes.add(new Chromosome(ChromosomeLength.Physics)); //Physics

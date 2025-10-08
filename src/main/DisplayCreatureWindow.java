@@ -3,15 +3,12 @@ package main;
 import main.Creature.BodySegments.BodySegment;
 import main.Creature.Creature;
 import static main.Main.gWorld;
-
 import main.Genetics.Genome;
 import processing.core.PApplet;
-
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class DisplayCreatureWindow extends PApplet{
-        private int lastDisplayed=-1;
+        private final int lastDisplayed=-1;
 
         public DisplayCreatureWindow() {
             PApplet.runSketch(new String[] {this.getClass().getSimpleName()}, this);

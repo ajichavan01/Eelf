@@ -6,11 +6,10 @@ import main.Genetics.GeneID;
 import main.Genetics.Genome;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class CreatureGeneWindow {
     static JTextPane Stats;
-    static JTextPane Stats1;
+
     public CreatureGeneWindow(){
         //Creating the Frame
         JFrame frame = new JFrame("Creature Genes");

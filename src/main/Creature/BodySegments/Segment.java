@@ -52,6 +52,6 @@ public class Segment extends BodySegment {
 
     @Override
     public ArrayList<PShape> CreateShapes(float w, float h, Color c){
-        return new ArrayList<PShape>();
+        return new ArrayList<>();
     }
 }

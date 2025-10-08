@@ -3,7 +3,6 @@ package main.Creature;
 import main.Actions;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class CreatureDecisionEngine{
     private final Creature CurrentCreature;

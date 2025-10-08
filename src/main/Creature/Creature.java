@@ -162,7 +162,7 @@ public class Creature{
         //TODO: Reengineer this to be an array with specific objects at specified locations in array to allow for easy additions to senses.
 
         //Determine Objects in Range.
-        ObjectsInRange = gWorld.ObjectsInRange(Vitals.GetX(),Vitals.GetY(),GameParameters.MaxObjectInRangeRadius,guid);;
+        ObjectsInRange = gWorld.ObjectsInRange(Vitals.GetX(),Vitals.GetY(),GameParameters.MaxObjectInRangeRadius,guid);
         ScentObjectsInRange=Olfactory.FindScents(ObjectsInRange);
         SeenObjectsInRange=Vision.FindObjects(ObjectsInRange);
 

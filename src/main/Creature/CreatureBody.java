@@ -20,9 +20,9 @@ public class CreatureBody{
 
     //CGV parameter variables
     private final float HeadShape;
-    private boolean MouthPresent;
+    private final boolean MouthPresent;
     private boolean FlipperPresent;
-    private boolean TailPresent;
+    private final boolean TailPresent;
 
     private boolean EyesPresent;
 

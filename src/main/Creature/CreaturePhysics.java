@@ -60,7 +60,6 @@ public class CreaturePhysics{
             TailSpeedMod=GeneMinMax.TailSpeedModMinPercentage + (Body.GetCurrentTailWidthPercentage() * (GeneMinMax.TailSpeedModMaxPercentage-GeneMinMax.TailSpeedModMinPercentage));
         }
         if(true){
-            float temp=Genes.GetMassPercentage();
             float MassUsedForSpeedMod=Body.GetCurrentBodyMass() * Genes.GetMassPercentage();
             MassSpeedMod=MassUsedForSpeedMod * GameParameters.MassSpeedModifierPercentage;
         }

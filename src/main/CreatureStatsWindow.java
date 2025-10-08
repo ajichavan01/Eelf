@@ -78,7 +78,6 @@ public class CreatureStatsWindow {
         CreatureBody Body=CurrentCreature.GetBody();
         CreaturePhysics Physics=CurrentCreature.GetPhysics();
         CreatureGeneValues Genes=CurrentCreature.GetGenes();
-        CreatureMetabolism Metabolism=CurrentCreature.GetMetabolism();
 
         String cp=AddSection("Creature Info",0);
         cp+=AddField("ID",1, CurrentCreature.GetUUID().toString());
@@ -88,7 +87,6 @@ public class CreatureStatsWindow {
         cp+=AddField("Pregnant",1,false);
         cp+=AddField("Speed",1,Genes.GetSpeed(),Physics.GetCurrentSpeed());
         cp+=AddField("Tail Speed Modifier",2,Physics.GetTailSpeedMod(),Physics.GetCurrentTailSpeedMod());
-        float temp=Physics.GetMassSpeedMod();
         cp+=AddField("Mass Speed Modifier", 2,Physics.GetMassSpeedMod(),Physics.GetCurrentMassSpeedMod());
         cp+=AddField("MaxTurnAngle",1,Genes.GetMaxTurnAngle(),Physics.GetCurrentTurnAngle());
         cp+=AddSection("Location Info",1);

@@ -1,18 +1,13 @@
 package main;
 
 import main.Creature.Creature;
-import main.Creature.CreatureGeneValues;
 import main.Creature.ObjectInRange;
-import main.Genetics.GeneBase;
-import main.Genetics.GeneID;
-import main.Genetics.Genome;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class CreatureVisionWindow {
     static JTextPane Stats;
-    static JTextPane Stats1;
     public CreatureVisionWindow(){
         //Creating the Frame
         JFrame frame = new JFrame("Creature Vision Info");
@@ -38,9 +33,6 @@ public class CreatureVisionWindow {
 
         frame.setVisible(true);
 
-    }
-    String FloatToString(float value){
-        return String.format("%.2f",value);
     }
     private String AddField(ObjectInRange object,int offset){
         String tab = "    ";

@@ -2,6 +2,9 @@ package main.Creature;
 
 import main.Actions;
 
+import java.util.ArrayList;
+import java.util.function.Predicate;
+
 public class CreatureDecisionEngine{
     private final Creature CurrentCreature;
     private final CreaturePhysics Physics;
@@ -13,6 +16,10 @@ public class CreatureDecisionEngine{
     private ObjectInRange PlantScentInRange;
     private ObjectInRange MeatScentInRange;
     private ObjectInRange CreatureScentInRange;
+    private ArrayList<ObjectInRange> AllObjectsInRange;
+    private ArrayList<ObjectInRange> ScentObjectsInRange;
+    private ArrayList<ObjectInRange> SeenObjectsInRange;
+
     public CreatureDecisionEngine(Creature currentCreature) {
         CurrentCreature=currentCreature;
         Physics=CurrentCreature.GetPhysics();
@@ -20,6 +27,15 @@ public class CreatureDecisionEngine{
         Vitals=CurrentCreature.GetVitals();
     }
 
+    public void SetObjectListInRange(ArrayList<ObjectInRange> allObjectsInRange){
+        AllObjectsInRange=allObjectsInRange;
+    }
+    public void SetScentObjectListInRange(ArrayList<ObjectInRange> scentObjectsInRange){
+        ScentObjectsInRange=scentObjectsInRange;
+    }
+    public void SetSeenObjectListInRange(ArrayList<ObjectInRange> seenObjectsInRange){
+        SeenObjectsInRange=seenObjectsInRange;
+    }
     public void SetObjectInRangeBySpecifiedType(ObjectInRange objectInRange, ObjectInRangeType objectInRangeType){
         switch (objectInRangeType){
             case Plant:
@@ -46,6 +62,12 @@ public class CreatureDecisionEngine{
         PlantInRange=null;
         MeatInRange=null;
         CreatureInRange=null;
+        PlantScentInRange=null;
+        MeatScentInRange=null;
+        CreatureScentInRange=null;
+        AllObjectsInRange=new ArrayList<>();
+        ScentObjectsInRange=new ArrayList<>();
+        SeenObjectsInRange=new ArrayList<>();
     }
 
     public Actions Decision(Actions previous){
@@ -56,6 +78,10 @@ public class CreatureDecisionEngine{
 
         if (CurrentCreature.GetTargetObject()==null){
             return Actions.NewDestination;
+        }
+
+        if (Vitals.IsHungry() && previous==Actions.Eat){
+            return Actions.Eat;
         }
 
         boolean mouthAtPoint = Physics.MouthAtPoint(CurrentCreature.GetTargetObject().X(),CurrentCreature.GetTargetObject().Y(),Body.GetCurrentBodyHeight());

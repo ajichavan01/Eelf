@@ -17,12 +17,18 @@ public class World{
     public Population gPopulation=new Population();
     public ArrayList<Nourishment> gNourishment=new ArrayList<>();
     public CreatureStatsWindow gCreatureStatsWindow;
+    public CreatureGeneWindow gCreatureGeneWindow;
+    static DisplayCreatureWindow gDisplayCreatureWindow;
+    static CreatureVisionWindow gCreatureVisionWindow;
     public float gTicks=1;
 
     private final int Width=1200;
     private final int Height=1000;
     public World(){
         gCreatureStatsWindow=new CreatureStatsWindow();
+        gCreatureGeneWindow=new CreatureGeneWindow();
+        gDisplayCreatureWindow=new DisplayCreatureWindow();
+        gCreatureVisionWindow=new CreatureVisionWindow();
     }
 
     public void CreatePopulation(int maxPop){
@@ -51,7 +57,9 @@ public class World{
             Creature creature=gPopulation.GetCreature(i);
             creature.CreatureAction(gTicks);
             creature.Display(w,1.0f);
-            if (gTicks%2==0){gCreatureStatsWindow.Update(creature);};
+            if (gTicks%2==0){gCreatureStatsWindow.Update(creature);}
+            if (gTicks%2==0){gCreatureGeneWindow.Update(creature);}
+            if (gTicks%2==0){gCreatureVisionWindow.Update(creature);}
         }
 
         for (Nourishment nourishment : gNourishment) {
@@ -66,23 +74,15 @@ public class World{
 
         //Check if any creatures are in the range.  For now we use the head location.
         //TODO: Create a box around the creature to represent it for more realistic and faster calculations later.
-        int ClosestCreature=-1;
-        float ClosestDistance=1000;
         for(int i=0;i<gPopulation.GetMaxPop();i++){
             Creature creature=gPopulation.GetCreature(i);
-            if (creature.GetUUID()!=uuid){
-                CreatureBody creatureBody=creature.GetBody();
-                BodySegment segment=creatureBody.GetHeadSegment();
-                float distance=gUtils.DistanceBetweenPoints(X,Y,segment.GetSegmentX(),segment.GetSegmentY());
-                if (distance<=RangeRadius && distance<ClosestDistance){
-                    ClosestCreature=i;
-                    ClosestDistance=distance;
-                }
+            if (creature.GetUUID()!=uuid) {
+                CreatureBody creatureBody = creature.GetBody();
+                BodySegment segment = creatureBody.GetHeadSegment();
+                float distance = gUtils.DistanceBetweenPoints(X, Y, segment.GetSegmentX(), segment.GetSegmentY());
+                ObjectInRange oir = new ObjectInRange(X, Y, distance, ObjectInRangeType.Creature, i, 0);
+                oirs.add(oir);
             }
-        }
-        if (ClosestCreature>-1){
-            ObjectInRange oir=new ObjectInRange(X,Y,ClosestDistance,ObjectInRangeType.Creature,ClosestCreature,0);
-            oirs.add(oir);
         }
 
         //Check if any nourishment are in the range. We will use the plants circle (radius) for calculation.
@@ -92,23 +92,22 @@ public class World{
             float distance=gUtils.DistanceBetweenPoints(X,Y,nourishment.GetNourishmentX(),nourishment.GetNourishmentY());
             if (distance<=RangeRadius){
                 ObjectInRangeType ot=ObjectInRangeType.Plant;
-                if (nourishment.NourishmentType()== NourishmentTypes.Plant){
-                    ot=ObjectInRangeType.Plant;
+                if (nourishment.NourishmentType()== NourishmentTypes.Plant || nourishment.NourishmentType()==NourishmentTypes.Meat) {
+                    if (nourishment.NourishmentType() == NourishmentTypes.Plant) {
+                        ot = ObjectInRangeType.Plant;
+                    } else {
+                        ot = ObjectInRangeType.Meat;
+                    }
+                    oirs.add(new ObjectInRange(nourishment.GetNourishmentX(), nourishment.GetNourishmentY(), distance, ot, i, 0));
                 }
-                if (nourishment.NourishmentType()==NourishmentTypes.Meat){
-                    ot=ObjectInRangeType.Meat;
+                if (nourishment.NourishmentType()==NourishmentTypes.Plant || nourishment.NourishmentType()==NourishmentTypes.Meat){
+                    if (nourishment.NourishmentType()==NourishmentTypes.Plant){
+                        ot=ObjectInRangeType.PlantScent;
+                    } else {
+                        ot=ObjectInRangeType.MeatScent;
+                    }
+                    oirs.add(new ObjectInRange(nourishment.GetNourishmentX(),nourishment.GetNourishmentY(),distance,ot,i,nourishment.GetNourishmentScentStrength()));
                 }
-                ObjectInRange oir=new ObjectInRange(nourishment.GetNourishmentX(),nourishment.GetNourishmentY(),distance,ot,i,0);
-                oirs.add(oir);
-                if (nourishment.NourishmentType()==NourishmentTypes.Plant){
-                    ot=ObjectInRangeType.PlantScent;
-                }
-                if (nourishment.NourishmentType()==NourishmentTypes.Meat){
-                    ot=ObjectInRangeType.MeatScent;
-                }
-
-                oir=new ObjectInRange(nourishment.GetNourishmentX(),nourishment.GetNourishmentY(),distance,ot,i,nourishment.GetNourishmentScentStrength());
-                oirs.add(oir);
             }
         }
 

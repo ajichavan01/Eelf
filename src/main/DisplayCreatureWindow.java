@@ -40,14 +40,18 @@ public class DisplayCreatureWindow extends PApplet{
                 Creature original=gWorld.gPopulation.GetCreature(0);
                 Genome DNA=original.GetGenes().GetBaseDNA();
                 // Creature(int i, float startX,float startY,ArrayList<Float> dna,int gen,float startingEnergy,UUID parent1,int age){
-                Creature current=new Creature(-1,0,DNA,UUID.randomUUID());
+                Creature current=new Creature(499,100,DNA,UUID.randomUUID());
                 current.GetVitals().SetAge(original.GetVitals().GetMaturityAge()-1);
                 current.GetMetabolism().Aging();
                 current.GetVitals().SetMaturity(2);
-                current.GetBody().UpdateBody();
-                current.GetVitals().SetX(200);
-                current.GetVitals().SetY(150);
+                current.GetVitals().SetX(100);
+                current.GetVitals().SetY(100);
                 current.GetVitals().SetAngle(radians(0));
+                current.GetBody().UpdateBody();
+                current.MoveTo(100,100);
+                current.GetBody().GetHeadSegment().SetSegmentX(current.GetVitals().GetX());
+                current.GetBody().GetHeadSegment().SetSegmentY(current.GetVitals().GetY());
+                current.GetBody().GetHeadSegment().SetSegmentAngle(current.GetVitals().GetAngle());
                 current.UpdateCreatureLocation();
                 float bl=current.GetBody().GetTotalBodySegmentLength();
                 for (int i = 1; i<bl; i++){
@@ -55,11 +59,9 @@ public class DisplayCreatureWindow extends PApplet{
                     BodySegment p = current.GetBody().GetBodySegment(i-1);
                     c.UpdateSegment(p);
                 }
+                current.GetBody().UpdateBody();
                 text(original.GetUUID().toString(),20,12);
-                //current.creatureProperties.UpdateBody(2);
-                //current.flipper.UpdateLocation(current.creatureProperties.GetBody().get(1));
                 current.Display(this,1.0f);
-                //lastDisplayed=gCurrentCreature;
             }
             //877-233-1800 UMR 2758 Direct
         }

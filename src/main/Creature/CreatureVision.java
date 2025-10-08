@@ -38,7 +38,7 @@ public class CreatureVision{
     public void UpdateSightLines(float d){
         sightlines=new ArrayList<>();
         distance=d;
-
+        System.out.println(angle);
         //get outside sight lines
         float x1,y1,x2,y2;
         x1 = (float) (hx + (d)*Math.cos(hangle-(angle/2)*Math.PI));
@@ -93,10 +93,13 @@ public class CreatureVision{
                 case Plant, Meat:
                     radius = gWorld.gNourishment.get(object.IdOfObject()).GetNourishmentSize() / 2;
                     object.distance = itemInSightLine(object.X(), object.Y(), radius);
+                    object.distance = itemInSightLine(object.X(), object.Y(), radius);
+                    distance=object.distance;
                     break;
                 case Creature:
                     radius = cgv.GetBodyWidth();
                     object.distance = itemInSightLine(object.X(), object.Y(), radius);
+                    distance=object.distance;
                     break;
                 case PlantScent:
                 case MeatScent:
@@ -104,7 +107,7 @@ public class CreatureVision{
                     distance = -1;
                     break;
             }
-            if (distance != -1) {
+            if (distance != -1.0f) {
                 oir.add(object);
             }
         }

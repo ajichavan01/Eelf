@@ -3,7 +3,7 @@ package main;
 public class GameParameters {
     public static final int FlippersSegmentConnected = 2;
     public static final int TailSegmentOffsetFromEnd = 0;
-    public static final float TailThresholdForSpeedMod=0.5f;
+    public static final float TailThresholdForSpeedMod=0.75f;
     public static final float MassSpeedModifierPercentage=0.0f;
     public static final int EyesSegmentConnected = 0;
     public static final int MouthSegmentConnected = 0;

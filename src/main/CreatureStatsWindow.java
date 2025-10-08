@@ -12,7 +12,7 @@ public class CreatureStatsWindow {
         //Creating the Frame
         JFrame frame = new JFrame("Creature Stats");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 1000);
+        frame.setSize(600, 1000);
 
         //Creating the panel at bottom and adding components
         JPanel panel = new JPanel();
@@ -20,11 +20,11 @@ public class CreatureStatsWindow {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
         Stats = new JTextPane();
-        Stats.setSize(400,1000);
+        Stats.setSize(300,1000);
         panel.add(Stats);
 
         Stats1 = new JTextPane();
-        Stats1.setSize(400,1000);
+        Stats1.setSize(300,1000);
         panel.add(Stats1);
 
         //Adding Components to the frame.

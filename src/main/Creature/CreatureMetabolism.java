@@ -1,6 +1,7 @@
 package main.Creature;
 
 import main.GameParameters;
+import main.Nourishments.MeatNourishment;
 import main.Nourishments.Nourishment;
 import main.Nourishments.NourishmentTypes;
 import main.Nourishments.PlantNourishment;
@@ -161,7 +162,7 @@ public class CreatureMetabolism {
         float amountAdded=0;
 
         if (nourishment.NourishmentType()== NourishmentTypes.Plant){
-            PlantNourishment plant = new PlantNourishment();
+            PlantNourishment plant = (PlantNourishment) nourishment;
             float mass=plant.GetNourishmentMass();
             if (mass>1) {
                 if (biteAmount > mass) {
@@ -174,7 +175,7 @@ public class CreatureMetabolism {
             }
         }
         if (nourishment.NourishmentType()== NourishmentTypes.Meat){
-            PlantNourishment meat = new PlantNourishment();
+            MeatNourishment meat = (MeatNourishment) nourishment;
             float mass=meat.GetNourishmentMass();
             if (mass>1) {
                 if (biteAmount > mass) {

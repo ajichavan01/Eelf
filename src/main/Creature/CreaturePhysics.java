@@ -58,8 +58,6 @@ public class CreaturePhysics{
 
         if(Body.GetTailPresent() && TailWidthPercentage>= GameParameters.TailThresholdForSpeedMod){
             TailSpeedMod=GeneMinMax.TailSpeedModMinPercentage + (Body.GetCurrentTailWidthPercentage() * (GeneMinMax.TailSpeedModMaxPercentage-GeneMinMax.TailSpeedModMinPercentage));
-            System.out.println("GetCurrentTailWidthPercentage=" + Body.GetCurrentTailWidthPercentage());
-            System.out.println("TailSpeedMod=" + TailSpeedMod);
         }
         if(true){
             float temp=Genes.GetMassPercentage();

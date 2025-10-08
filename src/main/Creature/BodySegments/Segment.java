@@ -22,7 +22,7 @@ public class Segment extends BodySegment {
 
         float a= (float) Math.atan2(prev.GetSegmentY()-GetSegmentY(),prev.GetSegmentX()-GetSegmentX());
         SetSegmentAngle(a);
-        //take the x and y squared, find the sqr root is the disance between
+        //take the x and y squared, find the sqr root is the distance between
         float d = (float) Math.sqrt(Math.pow(prev.GetSegmentX()-GetSegmentX(),2) + Math.pow(prev.GetSegmentY()-GetSegmentY(),2));
         if (d >GetSegmentDistance()){
             float delta = d-GetSegmentDistance();

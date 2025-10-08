@@ -1,8 +1,11 @@
 package main.Creature;
 
 import main.Actions;
+import main.Nourishments.Nourishment;
 
 import java.util.ArrayList;
+
+import static main.Main.gWorld;
 
 public class CreatureDecisionEngine{
     private final Creature CurrentCreature;
@@ -77,6 +80,10 @@ public class CreatureDecisionEngine{
 
         if (CurrentCreature.GetTargetObject()==null){
             return Actions.NewDestination;
+        }
+
+        if (previous==Actions.Eat && gWorld.gNourishment.get(CurrentCreature.GetTargetObject().IdOfObject()).GetNourishmentMass()==0){
+            return Actions.Move;
         }
 
         if (Vitals.IsHungry() && previous==Actions.Eat){

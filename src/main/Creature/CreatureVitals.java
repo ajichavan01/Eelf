@@ -160,6 +160,5 @@ public class CreatureVitals {
     public float RemovePlantStomachContent(float plant){
         return StomachContent.RemovePlantContent(plant);
     }
-
     public float GetCurrentVisionDistance(){return CGV.GetVisionDistance()* GetMaturity();}
 }

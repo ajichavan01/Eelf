@@ -2,8 +2,8 @@ package main.Creature;
 import main.FlagsOverride;
 import main.Creature.BodySegments.BodySegment;
 import main.GameParameters;
-import main.GeneMinMax;
 import main.Genetics.GeneID;
+import main.Genetics.GeneMinMax;
 
 import static main.Main.gUtils;
 
@@ -57,7 +57,7 @@ public class CreaturePhysics{
         }
 
         if(Body.GetTailPresent() && TailWidthPercentage>= GameParameters.TailThresholdForSpeedMod){
-            TailSpeedMod=GeneMinMax.TailSpeedModMinPercentage + (Body.GetCurrentTailWidthPercentage() * (GeneMinMax.TailSpeedModMaxPercentage-GeneMinMax.TailSpeedModMinPercentage));
+            TailSpeedMod= GeneMinMax.TailSpeedModMinPercentage + (Body.GetCurrentTailWidthPercentage() * (GeneMinMax.TailSpeedModMaxPercentage-GeneMinMax.TailSpeedModMinPercentage));
         }
         if(true){
             float MassUsedForSpeedMod=Body.GetCurrentBodyMass() * Genes.GetMassPercentage();

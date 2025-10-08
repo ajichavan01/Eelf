@@ -85,6 +85,7 @@ public class Creature{
     public CreatureMetabolism GetMetabolism(){return Metabolism;}
 
     public CreatureDecisionEngine GetDecisionEngine(){return DecisionEngine;}
+    public CreatureVision GetCreatureVision(){return Vision;}
 
     public ObjectInRange GetTargetObject(){return TargetObject;}
 
@@ -115,11 +116,6 @@ public class Creature{
                     b.UpdateSegment(Body.GetBodySegment(b.GetSegmentConnectedTo()));
                     break;
             }
-
-            Vision.SetVisionDistance(Vitals.GetCurrentVisionDistance());
-            Vision.UpdateLocation(Body.GetHeadSegment());
-            Vision.UpdateSightLines(Vitals.GetCurrentVisionDistance());
-
         }
     }
 
@@ -159,6 +155,11 @@ public class Creature{
 
     public void CreatureAction(float ticks){
         UpdateCreatureLocation();
+
+        Vision.SetVisionDistance(Vitals.GetCurrentVisionDistance());
+        Vision.UpdateLocation(Body.GetHeadSegment());
+        Vision.UpdateSightLines();
+
         //TODO: Reengineer this to be an array with specific objects at specified locations in array to allow for easy additions to senses.
 
         //Determine Objects in Range.
@@ -213,6 +214,7 @@ public class Creature{
                 Nourishment nourishment=gWorld.gNourishment.get(TargetObject.IdOfObject());
                 float amountBit=Metabolism.Bite(nourishment);
                 nourishment.SetNourishmentMass(nourishment.GetNourishmentMass()-amountBit);
+                nourishment.SetNourishmentSize(nourishment.GetNourishmentMass()/10);
                 gWorld.gNourishment.set(TargetObject.IdOfObject(),nourishment);
                 break;
         }

@@ -9,6 +9,7 @@ import main.Nourishments.PlantNourishment;
 public class CreatureMetabolism {
     private final CreatureGeneValues CGV;
     private final CreatureVitals Vitals;
+    private final CreatureBody Body;
     private float EnergyUsedBase;
     private float EnergyUsedInGestation;
     private float EnergyUsedInBirth;
@@ -17,7 +18,7 @@ public class CreatureMetabolism {
     public CreatureMetabolism(Creature currentCreature){
         CGV= currentCreature.GetGenes();
         Vitals= currentCreature.GetVitals();
-
+        Body= currentCreature.GetBody();
         //BP = 100 * maturity * pow(Size Ratio (gene), 2) - Max energy that can be stored.
 
         //Body-Energy Ratio = Base Body-Energy Ratio (setting)
@@ -158,7 +159,7 @@ public class CreatureMetabolism {
 
     //Call when creature takes a bite of plants or meat
     public float Bite(Nourishment nourishment){
-        float biteAmount=CGV.GetMouthSize();
+        float biteAmount=Body.GetCurrentMouthSize();
         float amountAdded=0;
 
         if (nourishment.NourishmentType()== NourishmentTypes.Plant){

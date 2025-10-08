@@ -1,4 +1,4 @@
-package main;
+package main.Genetics;
 
 public class GeneMinMax {
     public static final float BodyLengthMax = 18;
@@ -29,12 +29,14 @@ public class GeneMinMax {
     public static final float FlipperHeightMin = 3f;
     public static final float SkinToughnessMax = 10f;
     public static final float SkinToughnessMin = 1f;
-    public static final float VisionAngleMax = 90f;
-    public static final float VisionAngleMin = 10f;
+    public static final float VisionAngleMax = 1.57f;
+    public static final float VisionAngleMin = 0.17f;
     public static final float VisionDistanceMax = 300f;
     public static final float VisionDistanceMin = 100f;
     public static final float VisionScanFreqMax = 6f;
     public static final float VisionScanFreqMin = 6f;
+    public static final float VisionClarityMax=0.3f;
+    public static final float VisionClarityMin=0.1f;
     public static final float HealthMax = 10f;
     public static final float HealthMin = 1f;
     public static final float EnergyStorageMax = 20f;

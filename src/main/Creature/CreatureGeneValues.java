@@ -1,5 +1,5 @@
 package main.Creature;
-import main.GeneMinMax;
+import main.Genetics.GeneMinMax;
 import main.Genetics.Genome;
 import main.Genetics.GeneID;
 
@@ -120,7 +120,7 @@ public class CreatureGeneValues{
         stomachSize=GeneMinMax.StomachSizeMin + (dna.GetGene(GeneID.StomachSize) * (GeneMinMax.StomachSizeMax-GeneMinMax.StomachSizeMin));
         maxStoredEnergy=GeneMinMax.EnergyStorageMin + (dna.GetGene(GeneID.MaxStoredEnergy) *(GeneMinMax.EnergyStorageMax-GeneMinMax.EnergyStorageMin));
         visionAngle=GeneMinMax.VisionAngleMin + (dna.GetGene(GeneID.VisionAngle) * (GeneMinMax.VisionAngleMax-GeneMinMax.VisionAngleMin));
-        visionClarity=dna.GetGene(GeneID.VisionClarity);
+        visionClarity=GeneMinMax.VisionClarityMin + (dna.GetGene(GeneID.VisionClarity) * (GeneMinMax.VisionClarityMax-GeneMinMax.VisionClarityMin));
         visionDistance=GeneMinMax.VisionDistanceMin + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax-GeneMinMax.VisionDistanceMin));
         visionScanFreq = GeneMinMax.VisionScanFreqMin + (dna.GetGene(GeneID.VisionScanFreq) * (GeneMinMax.VisionScanFreqMax-GeneMinMax.VisionScanFreqMin));
         bodyDistanceBetweenSegments=bodyHeight* (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments) * (GeneMinMax.BodyDistanceBetweenSegmentsMax-GeneMinMax.BodyDistanceBetweenSegmentsMin)));

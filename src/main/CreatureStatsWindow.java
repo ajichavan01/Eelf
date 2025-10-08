@@ -149,7 +149,7 @@ public class CreatureStatsWindow {
         mp+=AddField("Energy Stored",2,Vitals.GetEnergyLevel());
 
         String vp=AddSection("Vision Info",0);
-        vp+=AddField("Angle",1,Genes.GetVisionAngle());
+        vp+=AddField("Angle",1,(float)Math.toDegrees(Genes.GetVisionAngle()));
         vp+=AddField("Distance",1,Genes.GetVisionDistance());
         vp+=AddField("Clarity",1,Genes.GetVisionClarity());
         vp+=AddField("Scan Freq",1,Genes.GetVisionScanFreq());

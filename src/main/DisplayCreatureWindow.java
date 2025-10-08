@@ -43,7 +43,7 @@ public class DisplayCreatureWindow extends PApplet{
                 current.GetVitals().SetMaturity(2);
                 current.GetVitals().SetX(100);
                 current.GetVitals().SetY(100);
-                current.GetVitals().SetAngle(radians(0));
+                current.GetVitals().SetAngle(radians(180));
                 current.GetBody().UpdateBody();
                 current.MoveTo(100,100);
                 current.GetBody().GetHeadSegment().SetSegmentX(current.GetVitals().GetX());
@@ -58,6 +58,7 @@ public class DisplayCreatureWindow extends PApplet{
                 }
                 current.GetBody().UpdateBody();
                 text(original.GetUUID().toString(),20,12);
+                current.GetCreatureVision().SetCreatureDisplayWindowFlag(true);
                 current.Display(this,1.0f);
             }
             //877-233-1800 UMR 2758 Direct

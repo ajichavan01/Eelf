@@ -85,7 +85,7 @@ public class Population {
         newGenome.SetGeneInChromosome(GeneID.BirthEnergyCost,gGenesDef.GetGene(GeneID.BirthEnergyCost).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.GestationPeriod, gGenesDef.GetGene(GeneID.GestationPeriod).RandomValue());
 
-        newGenome.SetGeneInChromosome(GeneID.VisionAngle, gGenesDef.GetGene(GeneID.VisionAngle).RandomValue(true));
+        newGenome.SetGeneInChromosome(GeneID.VisionAngle, 1); //gGenesDef.GetGene(GeneID.VisionAngle).RandomValue(true));
         newGenome.SetGeneInChromosome(GeneID.VisionClarity, gGenesDef.GetGene(GeneID.VisionClarity).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.VisionDistance, gGenesDef.GetGene(GeneID.VisionDistance).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.VisionScanFreq, gGenesDef.GetGene(GeneID.VisionScanFreq).RandomValue());

@@ -11,7 +11,7 @@ public class CreatureStomachContent {
 
     public float AddMeatContent(float stomachSize,float value){
         if (GetTotalContent()+value>stomachSize){
-            float totalAdded=value-(stomachSize-(GetTotalContent()+value));
+            float totalAdded=value+(stomachSize-(GetTotalContent()+value));
             MeatContent+=totalAdded;
             return totalAdded;
         }
@@ -20,7 +20,7 @@ public class CreatureStomachContent {
     }
     public float AddPlantContent(float stomachSize,float value){
         if (GetTotalContent()+value>stomachSize){
-            float totalAdded=value-(stomachSize-(GetTotalContent()+value));
+            float totalAdded=value+(stomachSize-(GetTotalContent()+value));
             PlantContent+=totalAdded;
             return totalAdded;
         }

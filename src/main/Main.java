@@ -10,10 +10,6 @@ public class Main {
     public static World gWorld=new World();
     public static GeneDefinitions gGenesDef=new GeneDefinitions();
 
-
-
-    static DisplayCreatureWindow gDisplayCreatureWnd;
-
     public static void main(String[] args) {
 
         Display();
@@ -25,7 +21,6 @@ public class Main {
         Visualization mySketch = new Visualization();
         PApplet.runSketch(processingArgs, mySketch);
 
-        //gDisplayCreatureWnd=new DisplayCreatureWindow();
-        //gDisplayCreatureWnd.windowMove(500,400);
+
     }
 }

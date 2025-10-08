@@ -12,7 +12,7 @@ public class CreatureStatsWindow {
         //Creating the Frame
         JFrame frame = new JFrame("Creature Stats");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 1000);
+        frame.setSize(600, 1000);
 
         //Creating the panel at bottom and adding components
         JPanel panel = new JPanel();
@@ -20,11 +20,11 @@ public class CreatureStatsWindow {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
         Stats = new JTextPane();
-        Stats.setSize(400,1000);
+        Stats.setSize(300,1000);
         panel.add(Stats);
 
         Stats1 = new JTextPane();
-        Stats1.setSize(400,1000);
+        Stats1.setSize(300,1000);
         panel.add(Stats1);
 
         //Adding Components to the frame.
@@ -78,7 +78,6 @@ public class CreatureStatsWindow {
         CreatureBody Body=CurrentCreature.GetBody();
         CreaturePhysics Physics=CurrentCreature.GetPhysics();
         CreatureGeneValues Genes=CurrentCreature.GetGenes();
-        CreatureMetabolism Metabolism=CurrentCreature.GetMetabolism();
 
         String cp=AddSection("Creature Info",0);
         cp+=AddField("ID",1, CurrentCreature.GetUUID().toString());
@@ -88,7 +87,6 @@ public class CreatureStatsWindow {
         cp+=AddField("Pregnant",1,false);
         cp+=AddField("Speed",1,Genes.GetSpeed(),Physics.GetCurrentSpeed());
         cp+=AddField("Tail Speed Modifier",2,Physics.GetTailSpeedMod(),Physics.GetCurrentTailSpeedMod());
-        float temp=Physics.GetMassSpeedMod();
         cp+=AddField("Mass Speed Modifier", 2,Physics.GetMassSpeedMod(),Physics.GetCurrentMassSpeedMod());
         cp+=AddField("MaxTurnAngle",1,Genes.GetMaxTurnAngle(),Physics.GetCurrentTurnAngle());
         cp+=AddSection("Location Info",1);
@@ -151,7 +149,7 @@ public class CreatureStatsWindow {
         mp+=AddField("Energy Stored",2,Vitals.GetEnergyLevel());
 
         String vp=AddSection("Vision Info",0);
-        vp+=AddField("Angle",1,Genes.GetVisionAngle());
+        vp+=AddField("Angle",1,(float)Math.toDegrees(Genes.GetVisionAngle()));
         vp+=AddField("Distance",1,Genes.GetVisionDistance());
         vp+=AddField("Clarity",1,Genes.GetVisionClarity());
         vp+=AddField("Scan Freq",1,Genes.GetVisionScanFreq());

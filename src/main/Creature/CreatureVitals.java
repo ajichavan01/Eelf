@@ -1,4 +1,5 @@
 package main.Creature;
+import main.FlagsOverride;
 import main.GameParameters;
 
 import java.util.UUID;
@@ -108,7 +109,11 @@ public class CreatureVitals {
 
     public boolean IsAlive() {return Alive;}
     public void Died(){Alive=false;}
-    public boolean IsHungry(){return StomachContent.GetTotalContent()>=GetCurrentStomachSize()-1;}
+    public boolean IsHungry(){
+        if (FlagsOverride.HungryOverride){
+            return true;
+        }
+        return StomachContent.GetTotalContent()<GetCurrentStomachSize()-1;}
     public boolean IsPregnant(){return Pregnant;}
     public void IsPregnant(boolean value){Pregnant=value;}
 
@@ -155,6 +160,5 @@ public class CreatureVitals {
     public float RemovePlantStomachContent(float plant){
         return StomachContent.RemovePlantContent(plant);
     }
-
     public float GetCurrentVisionDistance(){return CGV.GetVisionDistance()* GetMaturity();}
 }

@@ -20,9 +20,9 @@ public class CreatureBody{
 
     //CGV parameter variables
     private final float HeadShape;
-    private boolean MouthPresent;
+    private final boolean MouthPresent;
     private boolean FlipperPresent;
-    private boolean TailPresent;
+    private final boolean TailPresent;
 
     private boolean EyesPresent;
 
@@ -173,7 +173,7 @@ public class CreatureBody{
         if (GetFlipperPresent() && GetBodySegment(FlippersSegmentID).BodySegmentType() == SegmentID.Flippers) {
             Flippers flippers=(Flippers) GetBodySegment(FlippersSegmentID);
             BodySegment connectedSegment=Body.get(flippers.GetSegmentConnectedTo());
-            flippers.InitializeSegment(connectedSegment.GetSegmentX(),connectedSegment.GetSegmentY(),connectedSegment.GetSegmentWidth(),connectedSegment.GetSegmentHeight(),0,GetCurrentBodyDistanceBetweenSegments(), GetCurrentFlipperColor());
+            flippers.InitializeSegment(connectedSegment.GetSegmentX(),connectedSegment.GetSegmentY(),connectedSegment.GetSegmentWidth(),connectedSegment.GetSegmentHeight(),connectedSegment.GetSegmentAngle(),GetCurrentBodyDistanceBetweenSegments(), GetCurrentFlipperColor());
             flippers.SetFlipperHeight(GetCurrentFlipperHeight());
             flippers.SetFlipperWidth(GetCurrentFlipperWidth());
             flippers.UpdateSegment(GetBodySegment(flippers.GetSegmentConnectedTo()));

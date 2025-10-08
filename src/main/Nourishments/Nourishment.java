@@ -49,7 +49,7 @@ public abstract class Nourishment{
     };
 
     public void SetNourishmentMass(float m){
-        NourishmentMass=m;
+        if (m<0) {NourishmentMass=0;} else {NourishmentMass=m;}
     };
 
     public Color GetNourishmentColor(){
@@ -80,7 +80,7 @@ public abstract class Nourishment{
     public void InitializeNourishment(float x,float y,float size, float mass,Color c,float scent,float strength){
         NourishmentX=x;
         NourishmentY=y;
-        NourishmentSize=size;
+        NourishmentSize=mass/10;
         NourishmentMass=mass;
         NourishmentColor=c;
         NourishmentScent=scent;

@@ -161,4 +161,6 @@ public class CreatureVitals {
         return StomachContent.RemovePlantContent(plant);
     }
     public float GetCurrentVisionDistance(){return CGV.GetVisionDistance()* GetMaturity();}
+    public float GetVisionDominancePercentage(){return CGV.GetVisionDominancePercentage();}
+    public float GetScentDominancePercentage(){return CGV.GetScentDominancePercentage();}
 }

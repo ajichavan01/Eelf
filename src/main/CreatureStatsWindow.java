@@ -105,23 +105,32 @@ public class CreatureStatsWindow {
         bp+=AddField("Color",1,Genes.GetBodyColor(),Body.GetCurrentHeadColor());
         bp+=AddSection("Mouth Info",1);
         bp+=AddField("Present",2,Genes.GetMouthPresent(),Body.GetMouthPresent());
-        bp+=AddField("Connect Segment",2,Body.GetMouthSegment().GetSegmentConnectedTo());
+        if (Body.GetMouthPresent()) {
+            bp += AddField("Connect Segment", 2, Body.GetMouthSegment().GetSegmentConnectedTo());
+        }
         bp+=AddField("Size",2,Genes.GetMouthSize(),Body.GetCurrentMouthSize());
         bp+=AddField("Bite Strength",2,Genes.GetBiteStrength(),Body.GetCurrentBiteStrength());
         bp+=AddField("Color",2,Genes.GetMouthColor(),Body.GetCurrentMouthColor());
         bp+=AddSection("Eye Info",1);
         bp+=AddField("Present",2,Genes.GetEyesPresent(),Body.GetEyesPresent());
-        bp+=AddField("Connect Segment",2,Body.GetEyesSegment().GetSegmentConnectedTo());
+        if (Body.GetEyesPresent()) {
+            bp += AddField("Connect Segment", 2, Body.GetEyesSegment().GetSegmentConnectedTo());
+        }
         bp+=AddField("Size",2,Genes.GetMouthSize(),Body.GetCurrentMouthSize());
         bp+=AddField("Color",2,Genes.GetEyeColor(),Body.GetCurrentEyesColor());
         bp+=AddSection("Flippers Info",1);
         bp+=AddField("Present",2,Genes.GetFlipperPresent(),Body.GetFlipperPresent());
-        bp+=AddField("Connect Segment",2,Body.GetFlippersSegment().GetSegmentConnectedTo());
+        if (Body.GetFlipperPresent()) {
+            bp += AddField("Connect Segment", 2, Body.GetFlippersSegment().GetSegmentConnectedTo());
+        }
         bp+=AddField("Width",2,Genes.GetFlipperWidth(),Body.GetCurrentFlipperWidth());
         bp+=AddField("Height",2,Genes.GetFlipperHeight(),Body.GetCurrentFlipperHeight());
         bp+=AddField("Color",2,Genes.GetFlipperColor(),Body.GetCurrentFlipperColor());
         bp+=AddSection("Tail Info",1);
         bp+=AddField("Present",2,Genes.GetTailPresent(),Body.GetTailPresent());
+        if (Body.GetTailPresent()){
+            bp += AddField("Connect Segment", 2, Body.GetTailSegment().GetSegmentConnectedTo());
+        }
         bp+=AddField("Width",2,Genes.GetTailWidthPercentage(),Body.GetCurrentTailWidth());
         bp+=AddField("Height",2,Genes.GetTailHeightPercentage(),Body.GetCurrentTailHeight());
         bp+=AddField("Color",2,Genes.GetFlipperColor(),Body.GetCurrentTailColor());
@@ -153,6 +162,7 @@ public class CreatureStatsWindow {
         vp+=AddField("Distance",1,Genes.GetVisionDistance());
         vp+=AddField("Clarity",1,Genes.GetVisionClarity());
         vp+=AddField("Scan Freq",1,Genes.GetVisionScanFreq());
+        vp+=AddField("VisionDominance",1,Genes.GetVisionDominancePercentage());
 
         String rp=AddSection("Reproduction Info",0);
         rp+=AddField("Birth Recovery Time",1,Genes.GetBirthRecoveryTime(),Vitals.GetBirthRecoveryTime());
@@ -160,7 +170,10 @@ public class CreatureStatsWindow {
         rp+=AddField("Gestation Period",1,Genes.GetGestationPeriod(),Vitals.GetGestationPeriodCountDown());
         rp+=AddField("Birth Energy Cost",1,Genes.GetBirthEnergyCost());
 
+        String op=AddSection("Olfactory",0);
+        op+=AddField("ScentDominance",1,Genes.GetScentDominancePercentage());
+
         Stats.setText(cp+bp+ap);
-        Stats1.setText(mp+rp+vp);
+        Stats1.setText(mp+rp+vp+op);
     }
 }

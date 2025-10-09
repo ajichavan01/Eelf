@@ -34,6 +34,7 @@ public class GeneID {  //Body Chromosome
     public static final int EyeColorBlue=36;
     public static final int EyeSize=37;
     public static final int EyesPresent=38;
+    public static final int VisionDominancePercentage=39;
 
     //Age Chromosome
     public static final int LifeSpan=40;
@@ -71,9 +72,10 @@ public class GeneID {  //Body Chromosome
 
     //Olfactory Chromosome
     public static final int ReceptorsSensitivity=90;
-    public static final int ReadyToMateScent=91;
-    public static final int FleeOrRepulseScent=92;
-    public static final int FoodScent=93;
+    public static final int ScentDominancePercentage=91;
+    public static final int ReadyToMateScent=92;
+    public static final int FleeOrRepulseScent=93;
+    public static final int FoodScent=94;
 
 //    //Scent Emission
 //    public static final int ScentEmitterRed=100;

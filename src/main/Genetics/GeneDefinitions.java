@@ -116,6 +116,9 @@ public class GeneDefinitions {
         geneBase=new GeneBase(true,   0.01f, 1.00f, 0.01f,  0.0f, true,   "Determines the if creature develops eyes.", GeneID.EyesPresent, locationOnChromosome,"GeneID.GeneID.EyesPresent", ChromosomeID.Vision);
         genes.set(GeneID.EyesPresent,geneBase);
 
+        geneBase=new GeneBase(true,0.01f, 1.00f, 0.05f,  0.0f, true,   "Determines how much the creature depends on vision.", GeneID.VisionDominancePercentage, locationOnChromosome,"GeneID.VisionDominancePercentage", ChromosomeID.Vision);
+        genes.set(GeneID.VisionDominancePercentage,geneBase);
+
         //Physics
         locationOnChromosome =0;
         geneBase=new GeneBase(true,  0.01f,   1.00f,  0.01f,  0.0f, true, "Determines the speed the creature moves at.", GeneID.MovementSpeed, locationOnChromosome++,"GeneID.MovementSpeed", ChromosomeID.Physics);
@@ -197,8 +200,12 @@ public class GeneDefinitions {
 
         //Olfactory
         locationOnChromosome =0;
-        geneBase=new GeneBase(true,0.01f, 1.00f, 0.01f,  0.0f, true, "The sensitivity of the olfactory receptors.  How strong the smell to be to be detected.", GeneID.ReceptorsSensitivity, locationOnChromosome,"GeneID.ReceptorsSensitivity", ChromosomeID.Olfactory);
+        geneBase=new GeneBase(true,0.01f, 1.00f, 0.01f,  0.0f, true, "The sensitivity of the olfactory receptors.  How strong the smell to be to be detected.", GeneID.ReceptorsSensitivity, locationOnChromosome++,"GeneID.ReceptorsSensitivity", ChromosomeID.Olfactory);
         genes.set(GeneID.ReceptorsSensitivity,geneBase);
+
+        geneBase=new GeneBase(true,0.01f, 1.00f, 0.01f,  0.0f, true, "Determines how much does the creature depend on scent.", GeneID.ScentDominancePercentage, locationOnChromosome++,"GeneID.ScentDominancePercentage", ChromosomeID.Olfactory);
+        genes.set(GeneID.ScentDominancePercentage,geneBase);
+
         //ReadyToMateScent=91;
         //FleeOrRepulseScent=92;
         //FoodScent=93;

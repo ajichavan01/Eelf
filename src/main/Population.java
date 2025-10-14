@@ -94,6 +94,7 @@ public class Population {
         newGenome.SetGeneInChromosome(GeneID.EyeColorBlue, gGenesDef.GetGene(GeneID.EyeColorBlue).RandomValue(false, 1));
         newGenome.SetGeneInChromosome(GeneID.EyeSize, gGenesDef.GetGene(GeneID.EyeSize).RandomValue(false,1));
         newGenome.SetGeneInChromosome(GeneID.EyesPresent, gGenesDef.GetGene(GeneID.EyesPresent).RandomValue(false, 1));
+        newGenome.SetGeneInChromosome(GeneID.VisionDominancePercentage, gGenesDef.GetGene(GeneID.VisionDominancePercentage).RandomValue(false,1));
 
         newGenome.SetGeneInChromosome(GeneID.MovementSpeed, gGenesDef.GetGene(GeneID.MovementSpeed).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MaxTurnAngle, gGenesDef.GetGene(GeneID.MaxTurnAngle).RandomValue());
@@ -111,6 +112,7 @@ public class Population {
         newGenome.SetGeneInChromosome(GeneID.SeniorAgePercentage, gGenesDef.GetGene(GeneID.SeniorAgePercentage).RandomValue());
 
         newGenome.SetGeneInChromosome(GeneID.ReceptorsSensitivity, gGenesDef.GetGene(GeneID.ReceptorsSensitivity).RandomValue());
+        newGenome.SetGeneInChromosome(GeneID.ScentDominancePercentage, gGenesDef.GetGene(GeneID.ScentDominancePercentage).RandomValue());
 
         return newGenome;
     }

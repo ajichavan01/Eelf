@@ -93,6 +93,7 @@ public class CreatureGeneWindow {
         vp+=AddField(1,genome.GetGeneDef(GeneID.EyeColorBlue),genome.GetGene(GeneID.EyeColorBlue));
         vp+=AddField(1,genome.GetGeneDef(GeneID.EyeSize),genome.GetGene(GeneID.EyeSize));
         vp+=AddField(1,genome.GetGeneDef(GeneID.EyesPresent),genome.GetGene(GeneID.EyesPresent));
+        vp+=AddField(1,genome.GetGeneDef(GeneID.VisionDominancePercentage),genome.GetGene(GeneID.VisionDominancePercentage));
         vp+="\r\n";
 
         String ap=AddSection("Aging",0);
@@ -137,7 +138,12 @@ public class CreatureGeneWindow {
         pp+=AddField(1,genome.GetGeneDef(GeneID.MovementSpeed),genome.GetGene(GeneID.MovementSpeed));
         pp+="\r\n";
 
-        Stats.setText(gp + vp + ap + mp + mop + gep + rp + pp);
+        String op=AddSection("Olfactory",0);
+        op+=AddField(1,genome.GetGeneDef(GeneID.ReceptorsSensitivity),genome.GetGene(GeneID.ReceptorsSensitivity));
+        op+=AddField(1,genome.GetGeneDef(GeneID.ScentDominancePercentage),genome.GetGene(GeneID.ScentDominancePercentage));
+        op+="\r\n";
+
+        Stats.setText(gp + vp + ap + mp + mop + gep + rp + pp + op);
         //Stats1.setText();
     }
 }

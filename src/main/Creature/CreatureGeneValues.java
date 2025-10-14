@@ -67,6 +67,8 @@ public class CreatureGeneValues{
     private final float maxHealth;
     private final float healthIncreasePercentage;
     public final float massPercentage;
+    private final float visionDominancePercentage;
+    private final float scentDominancePercentage;
 
     public CreatureGeneValues(Genome genome){
 
@@ -128,6 +130,9 @@ public class CreatureGeneValues{
         maxHealth=GeneMinMax.HealthMin+(dna.GetGene(GeneID.MaxHealth)*(GeneMinMax.HealthMax-GeneMinMax.HealthMin));
         healthIncreasePercentage=dna.GetGene(GeneID.IncreaseHealthPercentage);
         massPercentage=dna.GetGene(GeneID.MassPercentage);
+        visionDominancePercentage=GeneMinMax.VisionDominanceMin + (dna.GetGene(GeneID.VisionDominancePercentage) * (GeneMinMax.VisionDominanceMax-GeneMinMax.VisionDominanceMin));
+        scentDominancePercentage=GeneMinMax.ScentDominanceMin + (dna.GetGene(GeneID.ScentDominancePercentage) * (GeneMinMax.ScentDominanceMax-GeneMinMax.ScentDominanceMin));
+
     }
 
     public Genome GetBaseDNA(){
@@ -341,6 +346,9 @@ public class CreatureGeneValues{
 
     public float GetMassPercentage(){return massPercentage;}
 
+    public float GetVisionDominancePercentage(){return visionDominancePercentage;}
+
+    public float GetScentDominancePercentage(){return scentDominancePercentage;}
     //public String ExportDNA(){
     //  String newdna="";
     //  for(int i=0;i<dna.size()-1;i++){

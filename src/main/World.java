@@ -27,7 +27,7 @@ public class World{
     public World(){
         gCreatureStatsWindow=new CreatureStatsWindow();
         gCreatureGeneWindow=new CreatureGeneWindow();
-        gDisplayCreatureWindow=new DisplayCreatureWindow();
+        if(FlagsOverride.ShowCreatureDisplayWindow){gDisplayCreatureWindow=new DisplayCreatureWindow();}
         gCreatureVisionWindow=new CreatureVisionWindow();
     }
 
@@ -59,7 +59,7 @@ public class World{
             creature.Display(w,1.0f);
             if (gTicks%2==0){gCreatureStatsWindow.Update(creature);}
             if (gTicks%2==0){gCreatureGeneWindow.Update(creature);}
-            if (gTicks%2==0){gCreatureVisionWindow.Update(creature);}
+            if (gTicks%2==0 && FlagsOverride.ShowCreatureDisplayWindow){gCreatureVisionWindow.Update(creature);}
         }
 
         for (Nourishment nourishment : gNourishment) {

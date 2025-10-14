@@ -1,6 +1,7 @@
 package main.Creature;
 
 import main.Actions;
+import main.Genetics.GeneID;
 import main.Nourishments.Nourishment;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class CreatureDecisionEngine{
     private final CreaturePhysics Physics;
     private final CreatureBody Body;
     private final CreatureVitals Vitals;
+    //private final CreatureGeneValues Genes;
     private ObjectInRange PlantInRange;
     private ObjectInRange MeatInRange;
     private ObjectInRange CreatureInRange;
@@ -75,8 +77,8 @@ public class CreatureDecisionEngine{
     public Actions Decision(Actions previous){
         float previousDistanceToTarget=CurrentCreature.GetPreviousDistanceToTarget();
         float distanceToTarget=CurrentCreature.GetDistanceToTarget();
-        boolean VisionPresent=Body.GetEyesPresent(); //TODO: && GeneID.VisionDominance>GeneID.ScentDominance - Done this way to we can add a gene to prioritize which sense should be used
-        boolean ScentPresent=false; //TODO:  GeneID.ScentDominance>GeneID.VisionDominance - Done this way so we can add gene to prioritize which sense should be used
+        boolean VisionPresent=Body.GetEyesPresent() && Vitals.GetVisionDominancePercentage()>Vitals.GetScentDominancePercentage();
+        boolean ScentPresent=Vitals.GetScentDominancePercentage()> Vitals.GetVisionDominancePercentage();
 
         if (CurrentCreature.GetTargetObject()==null){
             return Actions.NewDestination;

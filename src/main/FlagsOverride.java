@@ -10,5 +10,6 @@ public class FlagsOverride {
         public static final boolean ShowVisionSightLinesFlag = false;
         public static final boolean ShowObjectsInRangeFlag=false;
         public static final boolean ShowScentRangeFlag=false;
+        public static final boolean ShowCreatureDisplayWindow=false;
 }
 

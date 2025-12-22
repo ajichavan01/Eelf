@@ -112,7 +112,9 @@ public class Creature{
                     t.SetTailWidth(Body.GetCurrentTailWidth());
                     t.UpdateSegment(Body.GetBodySegment(b.GetSegmentConnectedTo()));
                     break;
-                case Head, Eyes, Segment:
+                case Head:
+                case Eyes:
+                case Segment:
                     b.UpdateSegment(Body.GetBodySegment(b.GetSegmentConnectedTo()));
                     break;
             }

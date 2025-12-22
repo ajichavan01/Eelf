@@ -11,7 +11,7 @@ import static main.Main.gGenesDef;
 
 public class Population {
     private final ArrayList<Creature> population;
-    int maxPop=0;
+    int maxPop=2;
 
     public Population() {
         population=new ArrayList<>();

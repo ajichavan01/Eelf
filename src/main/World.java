@@ -22,13 +22,13 @@ public class World{
     static CreatureVisionWindow gCreatureVisionWindow;
     public float gTicks=1;
 
-    private final int Width=1200;
-    private final int Height=1000;
+    private final int Width=1000;
+    private final int Height=800;
     public World(){
-        gCreatureStatsWindow=new CreatureStatsWindow();
-        gCreatureGeneWindow=new CreatureGeneWindow();
+        // gCreatureStatsWindow=new CreatureStatsWindow();
+        // gCreatureGeneWindow=new CreatureGeneWindow();
         if(FlagsOverride.ShowCreatureDisplayWindow){gDisplayCreatureWindow=new DisplayCreatureWindow();}
-        gCreatureVisionWindow=new CreatureVisionWindow();
+        // gCreatureVisionWindow=new CreatureVisionWindow();
     }
 
     public void CreatePopulation(int maxPop){
@@ -57,9 +57,9 @@ public class World{
             Creature creature=gPopulation.GetCreature(i);
             creature.CreatureAction(gTicks);
             creature.Display(w,1.0f);
-            if (gTicks%2==0){gCreatureStatsWindow.Update(creature);}
-            if (gTicks%2==0){gCreatureGeneWindow.Update(creature);}
-            if (gTicks%2==0 && FlagsOverride.ShowCreatureDisplayWindow){gCreatureVisionWindow.Update(creature);}
+            // if (gTicks%2==0){gCreatureStatsWindow.Update(creature);}
+            // if (gTicks%2==0){gCreatureGeneWindow.Update(creature);}
+            // if (gTicks%2==0 && FlagsOverride.ShowCreatureDisplayWindow){gCreatureVisionWindow.Update(creature);}
         }
 
         for (Nourishment nourishment : gNourishment) {

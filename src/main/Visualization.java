@@ -6,7 +6,7 @@ public class Visualization extends PApplet {
 
 
     public void settings() {
-        size(1400, 1000);
+        size(1000, 800);
     }
 
     public void setup() {

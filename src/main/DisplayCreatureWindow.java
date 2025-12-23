@@ -61,7 +61,6 @@ public class DisplayCreatureWindow extends PApplet{
                 current.GetCreatureVision().SetCreatureDisplayWindowFlag(true);
                 current.Display(this,1.0f);
             }
-            //877-233-1800 UMR 2758 Direct
         }
     }
 

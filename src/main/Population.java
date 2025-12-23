@@ -55,6 +55,7 @@ public class Population {
     public Genome BuildRandomGenome() {
         Genome newGenome=new Genome(8,gGenesDef);
 
+        // body segment genes
         newGenome.SetGeneInChromosome(GeneID.BodyLength, gGenesDef.GetGene(GeneID.BodyLength).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.HeadShape, gGenesDef.GetGene(GeneID.HeadShape).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.BodyHeight, gGenesDef.GetGene(GeneID.BodyHeight).RandomValue());
@@ -78,17 +79,20 @@ public class Population {
         newGenome.SetGeneInChromosome(GeneID.TailColorBlue, gGenesDef.GetGene(GeneID.TailColorBlue).RandomValue(false, 1));
         newGenome.SetGeneInChromosome(GeneID.BodyDistanceBetweenSegments, gGenesDef.GetGene(GeneID.BodyDistanceBetweenSegments).RandomValue(false, 1));
 
+        // digestion genes
         newGenome.SetGeneInChromosome(GeneID.StomachSize, gGenesDef.GetGene(GeneID.StomachSize).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.DigestionRate, gGenesDef.GetGene(GeneID.DigestionRate).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.PlantToEnergyConversionRate, gGenesDef.GetGene(GeneID.PlantToEnergyConversionRate).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MeatToEnergyConversionRate, gGenesDef.GetGene(GeneID.MeatToEnergyConversionRate).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MaxStoredEnergy, gGenesDef.GetGene(GeneID.MaxStoredEnergy).RandomValue());
 
+        // birth genes
         newGenome.SetGeneInChromosome(GeneID.BirthGestationEnergyCost, gGenesDef.GetGene(GeneID.BirthGestationEnergyCost).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.BirthRecoveryTime, gGenesDef.GetGene(GeneID.BirthRecoveryTime).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.BirthEnergyCost,gGenesDef.GetGene(GeneID.BirthEnergyCost).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.GestationPeriod, gGenesDef.GetGene(GeneID.GestationPeriod).RandomValue());
 
+        // vision genes
         newGenome.SetGeneInChromosome(GeneID.VisionAngle, 1); //gGenesDef.GetGene(GeneID.VisionAngle).RandomValue(true));
         newGenome.SetGeneInChromosome(GeneID.VisionClarity, gGenesDef.GetGene(GeneID.VisionClarity).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.VisionDistance, gGenesDef.GetGene(GeneID.VisionDistance).RandomValue());
@@ -100,10 +104,12 @@ public class Population {
         newGenome.SetGeneInChromosome(GeneID.EyesPresent, gGenesDef.GetGene(GeneID.EyesPresent).RandomValue(false, 1));
         newGenome.SetGeneInChromosome(GeneID.VisionDominancePercentage, gGenesDef.GetGene(GeneID.VisionDominancePercentage).RandomValue(false,1));
 
+        // movement genes
         newGenome.SetGeneInChromosome(GeneID.MovementSpeed, gGenesDef.GetGene(GeneID.MovementSpeed).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MaxTurnAngle, gGenesDef.GetGene(GeneID.MaxTurnAngle).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MassPercentage, gGenesDef.GetGene(GeneID.MassPercentage).RandomValue());
 
+        // mouth genes
         newGenome.SetGeneInChromosome(GeneID.MouthSize, gGenesDef.GetGene(GeneID.MouthSize).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.BiteStrength, gGenesDef.GetGene(GeneID.BiteStrength).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MouthColorRed, gGenesDef.GetGene(GeneID.MouthColorRed).RandomValue(false, 1));
@@ -111,10 +117,12 @@ public class Population {
         newGenome.SetGeneInChromosome(GeneID.MouthColorBlue, gGenesDef.GetGene(GeneID.MouthColorBlue).RandomValue(false, 1));
         newGenome.SetGeneInChromosome(GeneID.MouthPresent, gGenesDef.GetGene(GeneID.MouthPresent).RandomValue());
 
+        // life span genes
         newGenome.SetGeneInChromosome(GeneID.LifeSpan, gGenesDef.GetGene(GeneID.LifeSpan).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.MatureAgePercentage, gGenesDef.GetGene(GeneID.MatureAgePercentage).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.SeniorAgePercentage, gGenesDef.GetGene(GeneID.SeniorAgePercentage).RandomValue());
 
+        // olfactory genes
         newGenome.SetGeneInChromosome(GeneID.ReceptorsSensitivity, gGenesDef.GetGene(GeneID.ReceptorsSensitivity).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.ScentDominancePercentage, gGenesDef.GetGene(GeneID.ScentDominancePercentage).RandomValue());
 

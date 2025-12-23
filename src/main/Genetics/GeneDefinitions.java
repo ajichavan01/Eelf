@@ -371,6 +371,18 @@ public class GeneDefinitions {
         return gene;
     }
 
+    public boolean doesGeneExist(int index) {
+        return index >= 0 && index < genes.size();
+    }
+
+    public boolean isGeneActive(int index) {
+        if (doesGeneExist(index)) {
+            return genes.get(index).Active();
+        } else {
+            return false;
+        }
+    }
+
     public float GeneCount() {
         return genes.size();
     }

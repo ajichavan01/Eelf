@@ -86,7 +86,6 @@ public class World{
         }
 
         //Check if any nourishment are in the range. We will use the plants circle (radius) for calculation.
-
         for(int i=0;i<gNourishment.size();i++){
             Nourishment nourishment=gNourishment.get(i);
             float distance=gUtils.DistanceBetweenPoints(X,Y,nourishment.GetNourishmentX(),nourishment.GetNourishmentY());

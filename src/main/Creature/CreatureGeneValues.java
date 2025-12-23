@@ -73,65 +73,95 @@ public class CreatureGeneValues{
     public CreatureGeneValues(Genome genome){
 
         dna=genome;
+
+System.out.println("DNA Genes Size: " + dna.toString());
+
+        // Body-related genes
         bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (0.01f * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
         //bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
         bodyHeight = GeneMinMax.BodyHeightMin + (dna.GetGene(GeneID.BodyHeight) * (GeneMinMax.BodyHeightMax-GeneMinMax.BodyHeightMin));
-        biteStrength= GeneMinMax.BiteStrengthMin + (dna.GetGene(GeneID.BiteStrength) * (GeneMinMax.BiteStrengthMax - GeneMinMax.BiteStrengthMin));
-        birthRecoveryTime=GeneMinMax.BirthRecoveryMin + (dna.GetGene(GeneID.BirthRecoveryTime) * (GeneMinMax.BirthRecoveryMax-GeneMinMax.BirthRecoveryMin));
-        birthEnergyCost=GeneMinMax.BirthEnergyCostMin + (dna.GetGene(GeneID.BirthEnergyCost) * (GeneMinMax.BirthEnergyCostMax-GeneMinMax.BirthEnergyCostMin));
-        birthGestationEnergyCost=GeneMinMax.BirthGestationEnergyCostMin + (dna.GetGene(GeneID.BirthGestationEnergyCost) * (GeneMinMax.BirthGestationEnergyCostMax-GeneMinMax.BirthGestationEnergyCostMin));
-        bodyWidth=GeneMinMax.BodyWidthMin + (dna.GetGene(GeneID.BodyWidth) * (GeneMinMax.BodyWidthMax-GeneMinMax.BodyWidthMin));
-        bodyTaper=GeneMinMax.BodyTapperMin + (dna.GetGene(GeneID.BodyTaper) * (GeneMinMax.BodyTapperMax-GeneMinMax.BodyTapperMin));
-        flipperPresent=dna.GetGene(GeneID.FlipperPresent);
-        flipperHeight=GeneMinMax.FlipperHeightMin + (dna.GetGene(GeneID.FlipperHeight)* (GeneMinMax.FlipperHeightMax-GeneMinMax.FlipperHeightMin));
-        flipperWidth=GeneMinMax.FlipperWidthMin + (dna.GetGene(GeneID.FlipperWidth)* (GeneMinMax.FlipperWidthMax-GeneMinMax.FlipperWidthMin));
-        tailPresent=dna.GetGene(GeneID.TailPresent);
-        tailHeightPercentage=GeneMinMax.TailHeightMinPercentage + (dna.GetGene(GeneID.TailHeightPercentage) * (GeneMinMax.TailHeightMaxPercentage-GeneMinMax.TailHeightMinPercentage));
-        tailWidthPercentage=GeneMinMax.TailWidthMinPercentage + (dna.GetGene(GeneID.TailWidthPercentage)* (GeneMinMax.TailWidthMaxPercentage-GeneMinMax.TailWidthMinPercentage));
-        bodyColorRed=(int) Math.floor(dna.GetGene(GeneID.BodyColorRed));
-        bodyColorGreen=(int) Math.floor(dna.GetGene(GeneID.BodyColorGreen));
-        bodyColorBlue=(int) Math.floor(dna.GetGene(GeneID.BodyColorBlue));
-        //flipperColorDeviation=-0.5f; //dna.GetGene(GeneID.FlipperColorDeviation);
-        flipperColorRed=(int) Math.floor(dna.GetGene(GeneID.FlipperColorRed));
-        flipperColorGreen=(int) Math.floor(dna.GetGene(GeneID.FlipperColorGreen));
-        flipperColorBlue=(int) Math.floor(dna.GetGene(GeneID.FlipperColorBlue));
-        tailColorRed=(int) Math.floor(dna.GetGene(GeneID.TailColorRed));
-        tailColorGreen=(int) Math.floor(dna.GetGene(GeneID.TailColorGreen));
-        tailColorBlue=(int) Math.floor(dna.GetGene(GeneID.TailColorBlue));
-        digestionRate=dna.GetGene(GeneID.DigestionRate);
-        eyeColorRed=(int) Math.floor(dna.GetGene(GeneID.EyeColorRed));
-        eyeColorGreen=(int) Math.floor(dna.GetGene(GeneID.EyeColorGreen));
-        eyeColorBlue=(int) Math.floor(dna.GetGene(GeneID.EyeColorBlue));
-        eyeSize=GeneMinMax.EyeSizeMin + (dna.GetGene(GeneID.EyeSize) * (GeneMinMax.EyeSizeMax-GeneMinMax.EyeSizeMin));
-        eyesPresent=dna.GetGene(GeneID.EyesPresent);
-        plantToEnergyConversionRate=dna.GetGene(GeneID.PlantToEnergyConversionRate);
-        meatToEnergyConversionRate=dna.GetGene(GeneID.MeatToEnergyConversionRate);
-        gestationPeriod=GeneMinMax.GestationPeriodMin + (dna.GetGene(GeneID.GestationPeriod) * (GeneMinMax.GestationPeriodMax-GeneMinMax.GestationPeriodMin));
-        headShape=dna.GetGene(GeneID.HeadShape);
-        lifeSpan = GeneMinMax.LifeSpanMax + (dna.GetGene(GeneID.LifeSpan) * (GeneMinMax.LifeSpanMax-GeneMinMax.LifeSpanMin));
-        matureAgePercentage=GeneMinMax.MatureAgePercentageMin + (dna.GetGene(GeneID.MatureAgePercentage) * (GeneMinMax.MatureAgePercentageMax-GeneMinMax.MatureAgePercentageMin));
-        maxTurnAngle = dna.GetGene(GeneID.MaxTurnAngle);
-        mouthColorRed=(int) Math.floor(dna.GetGene(GeneID.MouthColorRed));
-        mouthColorGreen=(int) Math.floor(dna.GetGene(GeneID.MouthColorGreen));
-        mouthColorBlue= (int) Math.floor(dna.GetGene(GeneID.MouthColorBlue));
-        mouthSize = bodyHeight*(dna.GetGene(GeneID.MouthSize));
-        mouthPresent =dna.GetGene(GeneID.MouthPresent);
-        seniorAgePercentage=GeneMinMax.SeniorAgePercentageMin + (dna.GetGene(GeneID.SeniorAgePercentage) * (GeneMinMax.SeniorAgePercentageMax-GeneMinMax.SeniorAgePercentageMin));
-        skinToughness=GeneMinMax.SkinToughnessMin + (dna.GetGene(GeneID.SkinToughness) * (GeneMinMax.SkinToughnessMax-GeneMinMax.SkinToughnessMin));
-        speed = GeneMinMax.MovementSpeedMin + (dna.GetGene(GeneID.MovementSpeed) * (GeneMinMax.MovementSpeedMax-GeneMinMax.MovementSpeedMin));
-        stomachSize=GeneMinMax.StomachSizeMin + (dna.GetGene(GeneID.StomachSize) * (GeneMinMax.StomachSizeMax-GeneMinMax.StomachSizeMin));
-        maxStoredEnergy=GeneMinMax.EnergyStorageMin + (dna.GetGene(GeneID.MaxStoredEnergy) *(GeneMinMax.EnergyStorageMax-GeneMinMax.EnergyStorageMin));
-        visionAngle=GeneMinMax.VisionAngleMin + (dna.GetGene(GeneID.VisionAngle) * (GeneMinMax.VisionAngleMax-GeneMinMax.VisionAngleMin));
-        visionClarity=GeneMinMax.VisionClarityMin + (dna.GetGene(GeneID.VisionClarity) * (GeneMinMax.VisionClarityMax-GeneMinMax.VisionClarityMin));
-        visionDistance=GeneMinMax.VisionDistanceMin + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax-GeneMinMax.VisionDistanceMin));
+        bodyWidth = GeneMinMax.BodyWidthMin + (dna.GetGene(GeneID.BodyWidth) * (GeneMinMax.BodyWidthMax-GeneMinMax.BodyWidthMin));
+        bodyTaper = GeneMinMax.BodyTapperMin + (dna.GetGene(GeneID.BodyTaper) * (GeneMinMax.BodyTapperMax-GeneMinMax.BodyTapperMin));
+        bodyDistanceBetweenSegments = bodyHeight * (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments) * (GeneMinMax.BodyDistanceBetweenSegmentsMax-GeneMinMax.BodyDistanceBetweenSegmentsMin)));
+        bodyColorRed = (int) Math.floor(dna.GetGene(GeneID.BodyColorRed));
+        bodyColorGreen = (int) Math.floor(dna.GetGene(GeneID.BodyColorGreen));
+        bodyColorBlue = (int) Math.floor(dna.GetGene(GeneID.BodyColorBlue));
+        massPercentage = dna.GetGene(GeneID.MassPercentage);
+
+        // Flipper-related genes
+        flipperPresent = dna.GetGene(GeneID.FlipperPresent);
+        flipperHeight = GeneMinMax.FlipperHeightMin + (dna.GetGene(GeneID.FlipperHeight) * (GeneMinMax.FlipperHeightMax-GeneMinMax.FlipperHeightMin));
+        flipperWidth = GeneMinMax.FlipperWidthMin + (dna.GetGene(GeneID.FlipperWidth) * (GeneMinMax.FlipperWidthMax-GeneMinMax.FlipperWidthMin));
+        //flipperColorDeviation = -0.5f; //dna.GetGene(GeneID.FlipperColorDeviation);
+        flipperColorRed = (int) Math.floor(dna.GetGene(GeneID.FlipperColorRed));
+        flipperColorGreen = (int) Math.floor(dna.GetGene(GeneID.FlipperColorGreen));
+        flipperColorBlue = (int) Math.floor(dna.GetGene(GeneID.FlipperColorBlue));
+
+        // Tail-related genes
+        tailPresent = dna.GetGene(GeneID.TailPresent);
+        tailHeightPercentage = GeneMinMax.TailHeightMinPercentage + (dna.GetGene(GeneID.TailHeightPercentage) * (GeneMinMax.TailHeightMaxPercentage-GeneMinMax.TailHeightMinPercentage));
+        tailWidthPercentage = GeneMinMax.TailWidthMinPercentage + (dna.GetGene(GeneID.TailWidthPercentage) * (GeneMinMax.TailWidthMaxPercentage-GeneMinMax.TailWidthMinPercentage));
+        tailColorRed = (int) Math.floor(dna.GetGene(GeneID.TailColorRed));
+        tailColorGreen = (int) Math.floor(dna.GetGene(GeneID.TailColorGreen));
+        tailColorBlue = (int) Math.floor(dna.GetGene(GeneID.TailColorBlue));
+
+        // Eye-related genes
+        eyeColorRed = (int) Math.floor(dna.GetGene(GeneID.EyeColorRed));
+        eyeColorGreen = (int) Math.floor(dna.GetGene(GeneID.EyeColorGreen));
+        eyeColorBlue = (int) Math.floor(dna.GetGene(GeneID.EyeColorBlue));
+        eyeSize = GeneMinMax.EyeSizeMin + (dna.GetGene(GeneID.EyeSize) * (GeneMinMax.EyeSizeMax-GeneMinMax.EyeSizeMin));
+        eyesPresent = dna.GetGene(GeneID.EyesPresent);
+
+        // Mouth-related genes
+        mouthColorRed = (int) Math.floor(dna.GetGene(GeneID.MouthColorRed));
+        mouthColorGreen = (int) Math.floor(dna.GetGene(GeneID.MouthColorGreen));
+        mouthColorBlue = (int) Math.floor(dna.GetGene(GeneID.MouthColorBlue));
+        mouthSize = bodyHeight * (dna.GetGene(GeneID.MouthSize));
+        mouthPresent = dna.GetGene(GeneID.MouthPresent);
+        biteStrength = GeneMinMax.BiteStrengthMin + (dna.GetGene(GeneID.BiteStrength) * (GeneMinMax.BiteStrengthMax - GeneMinMax.BiteStrengthMin));
+
+        // Vision-related genes
+        visionAngle = GeneMinMax.VisionAngleMin + (dna.GetGene(GeneID.VisionAngle) * (GeneMinMax.VisionAngleMax-GeneMinMax.VisionAngleMin));
+        visionClarity = GeneMinMax.VisionClarityMin + (dna.GetGene(GeneID.VisionClarity) * (GeneMinMax.VisionClarityMax-GeneMinMax.VisionClarityMin));
+        visionDistance = GeneMinMax.VisionDistanceMin + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax-GeneMinMax.VisionDistanceMin));
         visionScanFreq = GeneMinMax.VisionScanFreqMin + (dna.GetGene(GeneID.VisionScanFreq) * (GeneMinMax.VisionScanFreqMax-GeneMinMax.VisionScanFreqMin));
-        bodyDistanceBetweenSegments=bodyHeight* (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments) * (GeneMinMax.BodyDistanceBetweenSegmentsMax-GeneMinMax.BodyDistanceBetweenSegmentsMin)));
-        receptorSensitivity=dna.GetGene(GeneID.ReceptorsSensitivity);
-        maxHealth=GeneMinMax.HealthMin+(dna.GetGene(GeneID.MaxHealth)*(GeneMinMax.HealthMax-GeneMinMax.HealthMin));
-        healthIncreasePercentage=dna.GetGene(GeneID.IncreaseHealthPercentage);
-        massPercentage=dna.GetGene(GeneID.MassPercentage);
-        visionDominancePercentage=GeneMinMax.VisionDominanceMin + (dna.GetGene(GeneID.VisionDominancePercentage) * (GeneMinMax.VisionDominanceMax-GeneMinMax.VisionDominanceMin));
-        scentDominancePercentage=GeneMinMax.ScentDominanceMin + (dna.GetGene(GeneID.ScentDominancePercentage) * (GeneMinMax.ScentDominanceMax-GeneMinMax.ScentDominanceMin));
+        visionDominancePercentage = GeneMinMax.VisionDominanceMin + (dna.GetGene(GeneID.VisionDominancePercentage) * (GeneMinMax.VisionDominanceMax-GeneMinMax.VisionDominanceMin));
+
+        // Scent-related genes
+        scentDominancePercentage = GeneMinMax.ScentDominanceMin + (dna.GetGene(GeneID.ScentDominancePercentage) * (GeneMinMax.ScentDominanceMax-GeneMinMax.ScentDominanceMin));
+
+        // Head and shape
+        headShape = dna.GetGene(GeneID.HeadShape);
+
+        // Movement and speed
+        speed = GeneMinMax.MovementSpeedMin + (dna.GetGene(GeneID.MovementSpeed) * (GeneMinMax.MovementSpeedMax-GeneMinMax.MovementSpeedMin));
+        maxTurnAngle = dna.GetGene(GeneID.MaxTurnAngle);
+
+        // Digestion and energy
+        digestionRate = dna.GetGene(GeneID.DigestionRate);
+        plantToEnergyConversionRate = dna.GetGene(GeneID.PlantToEnergyConversionRate);
+        meatToEnergyConversionRate = dna.GetGene(GeneID.MeatToEnergyConversionRate);
+        stomachSize = GeneMinMax.StomachSizeMin + (dna.GetGene(GeneID.StomachSize) * (GeneMinMax.StomachSizeMax-GeneMinMax.StomachSizeMin));
+        maxStoredEnergy = GeneMinMax.EnergyStorageMin + (dna.GetGene(GeneID.MaxStoredEnergy) * (GeneMinMax.EnergyStorageMax-GeneMinMax.EnergyStorageMin));
+
+        // Birth and gestation
+        birthRecoveryTime = GeneMinMax.BirthRecoveryMin + (dna.GetGene(GeneID.BirthRecoveryTime) * (GeneMinMax.BirthRecoveryMax-GeneMinMax.BirthRecoveryMin));
+        birthEnergyCost = GeneMinMax.BirthEnergyCostMin + (dna.GetGene(GeneID.BirthEnergyCost) * (GeneMinMax.BirthEnergyCostMax-GeneMinMax.BirthEnergyCostMin));
+        birthGestationEnergyCost = GeneMinMax.BirthGestationEnergyCostMin + (dna.GetGene(GeneID.BirthGestationEnergyCost) * (GeneMinMax.BirthGestationEnergyCostMax-GeneMinMax.BirthGestationEnergyCostMin));
+        gestationPeriod = GeneMinMax.GestationPeriodMin + (dna.GetGene(GeneID.GestationPeriod) * (GeneMinMax.GestationPeriodMax-GeneMinMax.GestationPeriodMin));
+
+        // Age and lifespan
+        lifeSpan = GeneMinMax.LifeSpanMax + (dna.GetGene(GeneID.LifeSpan) * (GeneMinMax.LifeSpanMax-GeneMinMax.LifeSpanMin));
+        matureAgePercentage = GeneMinMax.MatureAgePercentageMin + (dna.GetGene(GeneID.MatureAgePercentage) * (GeneMinMax.MatureAgePercentageMax-GeneMinMax.MatureAgePercentageMin));
+        seniorAgePercentage = GeneMinMax.SeniorAgePercentageMin + (dna.GetGene(GeneID.SeniorAgePercentage) * (GeneMinMax.SeniorAgePercentageMax-GeneMinMax.SeniorAgePercentageMin));
+
+        // Health and toughness
+        skinToughness = GeneMinMax.SkinToughnessMin + (dna.GetGene(GeneID.SkinToughness) * (GeneMinMax.SkinToughnessMax-GeneMinMax.SkinToughnessMin));
+        maxHealth = GeneMinMax.HealthMin + (dna.GetGene(GeneID.MaxHealth) * (GeneMinMax.HealthMax-GeneMinMax.HealthMin));
+        healthIncreasePercentage = dna.GetGene(GeneID.IncreaseHealthPercentage);
+
+        // Receptors
+        receptorSensitivity = dna.GetGene(GeneID.ReceptorsSensitivity);
 
     }
 

@@ -135,19 +135,24 @@ public class Creature{
 
         //creatureProperties.ReduceEnergyLevel((currentSpeed*gSpeedEnergyMod)/60);
     }
+
     public float GetDistanceToTarget(){
         return DistanceToTarget;
     }
+
     public float GetPreviousDistanceToTarget(){
         return PreviousDistanceToTarget;
     }
+
     private ObjectInRange NewDestination(){
         PreviousDistanceToTarget=0;
         return new ObjectInRange(gUtils.GetRandomNumber(10,1190),gUtils.GetRandomNumber(10,990),0,ObjectInRangeType.Location,0,0);
     }
+
     public Actions GetCurrentAction(){
         return CreatureAction;
     }
+
     public ArrayList<ObjectInRange> GetObjectsInRange(UUID CurrentUUID){return ObjectsInRange;}
     public ArrayList<ObjectInRange> GetObjectsScentInRange(ArrayList<ObjectInRange> objectsInRangeList) {return ScentObjectsInRange;}
     public ArrayList<ObjectInRange> GetObjectsSeenInRange(ArrayList<ObjectInRange> objectsInRangeList) {return SeenObjectsInRange;}

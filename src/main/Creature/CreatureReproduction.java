@@ -3,22 +3,22 @@ package main.Creature;
 import main.Genetics.Genome;
 
 public class CreatureReproduction {
-    private final CreatureGeneValues CGV;
+    private final CreatureGeneValues CurrentGeneValues;
     private final CreatureVitals Vitals;
     private float maxBirthRecoveryTime;
     private float birthGestationEnergyCost;
     private float birthEnergyCost;
     private float gestationPeriod;
     public CreatureReproduction(Creature currentCreature){
-        CGV=currentCreature.GetGenes();
+        CurrentGeneValues=currentCreature.GetGenes();
         Vitals=currentCreature.GetVitals();
     }
 
     public void InitializeReproduction(){
-        maxBirthRecoveryTime=CGV.GetBirthRecoveryTime();
-        birthEnergyCost=CGV.GetBirthEnergyCost();
-        birthGestationEnergyCost=CGV.GetBirthGestationEnergyCost();
-        gestationPeriod=CGV.GetGestationPeriod();
+        maxBirthRecoveryTime=CurrentGeneValues.GetBirthRecoveryTime();
+        birthEnergyCost=CurrentGeneValues.GetBirthEnergyCost();
+        birthGestationEnergyCost=CurrentGeneValues.GetBirthGestationEnergyCost();
+        gestationPeriod=CurrentGeneValues.GetGestationPeriod();
     }
 
     public void ReproductionCycle(){

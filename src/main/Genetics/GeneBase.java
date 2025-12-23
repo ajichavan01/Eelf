@@ -126,5 +126,35 @@ public class GeneBase{
         randomBand=value;
     }
 
+    @Override
+    public String toString() {
+        return "GeneBase{" +
+                "geneID=" + geneID +
+                ", geneName='" + geneName + '\'' +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                ", minimum=" + minimum +
+                ", maximum=" + maximum +
+                ", chromosome=" + chromosome +
+                ", geneLocation=" + geneLocation +
+                ", startingValue=" + startingValue +
+                ", randomStartingValue=" + randomStartingValue +
+                ", mutationFactor=" + mutationFactor +
+                ", mutationRate=" + MutationRate +
+                '}';
+    }
+
+    public void printGeneDetails() {
+        System.out.println("=== Gene Details ===");
+        System.out.println("ID: " + geneID + " | Name: " + geneName);
+        System.out.println("Description: " + description);
+        System.out.println("Active: " + active);
+        System.out.println("Range: " + minimum + " - " + maximum);
+        System.out.println("Chromosome: " + chromosome + " | Location: " + geneLocation);
+        System.out.println("Starting Value: " + startingValue + " | Random: " + randomStartingValue);
+        System.out.println("Mutation Factor: " + mutationFactor + " | Rate: " + MutationRate);
+        System.out.println("===================");
+    }
+
 
 }

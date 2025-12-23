@@ -12,8 +12,8 @@ public class CreatureOlfactory{
 
     public CreatureOlfactory(Creature currentCreature){
         CurrentCreature=currentCreature;
-        CreatureGeneValues CGV = currentCreature.GetGenes();
-        Sensitivity= CGV.GetReceptorSensitivity();
+        CreatureGeneValues CurrentGeneValues = currentCreature.GetGenes();
+        Sensitivity= CurrentGeneValues.GetReceptorSensitivity();
         CreatureVitals vitals = currentCreature.GetVitals();
     }
 

@@ -15,11 +15,11 @@ public class CreatureVision{
     private float distance;
     private float clarity;
     private ArrayList<SightLine> sightlines;
-    CreatureGeneValues cgv;
+    CreatureGeneValues currentGeneValues;
     private boolean CreatureDisplayWindowFlag=false;
 
     public CreatureVision(Creature currentCreature) {
-        cgv=currentCreature.GetGenes();
+        currentGeneValues=currentCreature.GetGenes();
     }
 
     public void InitializeVision(float a, float d, float newClarity){
@@ -112,7 +112,7 @@ public class CreatureVision{
                     distanceToObject=object.distance;
                     break;
                 case Creature:
-                    radius = cgv.GetBodyWidth();
+                    radius = currentGeneValues.GetBodyWidth();
                     object.distance = itemInSightLine(object.X(), object.Y(), radius);
                     distanceToObject=object.distance;
                     break;

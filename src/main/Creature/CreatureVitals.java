@@ -5,7 +5,7 @@ import main.GameParameters;
 import java.util.UUID;
 
 public class CreatureVitals {
-    private final CreatureGeneValues CGV;
+    private final CreatureGeneValues CurrentGeneValues;
     private float X;
     private float Y;
     private float Angle;
@@ -28,7 +28,7 @@ public class CreatureVitals {
     private float Maturity;
 
     public CreatureVitals(Creature currentCreature){
-        CGV= currentCreature.GetGenes();
+        CurrentGeneValues= currentCreature.GetGenes();
     }
 
     public void InitializeCreatureVitals(float x, float y, float angle, float health,int age, UUID parentMale, UUID parentFemale){
@@ -38,9 +38,9 @@ public class CreatureVitals {
         Health=health;
         Age=age;
 
-        LifeSpan= (int) CGV.GetLifeSpan();
-        MaturityAge= (int) (LifeSpan*CGV.GetMatureAgePercentage());
-        SeniorAge=(int) (LifeSpan*CGV.GetSeniorAgePercentage());
+        LifeSpan= (int) CurrentGeneValues.GetLifeSpan();
+        MaturityAge= (int) (LifeSpan*CurrentGeneValues.GetMatureAgePercentage());
+        SeniorAge=(int) (LifeSpan*CurrentGeneValues.GetSeniorAgePercentage());
         MaturityRate=( 1.0f /MaturityAge);
         if (Age<MaturityAge){
             Maturity=MaturityRate*Age;
@@ -58,7 +58,7 @@ public class CreatureVitals {
         ParentMaleID=parentMale;
         ParentFemaleID=parentFemale;
 
-        StomachSize=CGV.GetStomachSize();
+        StomachSize=CurrentGeneValues.GetStomachSize();
 
     }
 
@@ -84,8 +84,8 @@ public class CreatureVitals {
         EvaluateHealth();
     }
     public void IncreaseHealth(float value){
-        if (Health+value>CGV.GetMaxHealth()){
-            Health=CGV.GetMaxHealth();
+        if (Health+value>CurrentGeneValues.GetMaxHealth()){
+            Health=CurrentGeneValues.GetMaxHealth();
         } else {
             Health+=value;
         }
@@ -97,7 +97,7 @@ public class CreatureVitals {
     }
     public int GetAge(){return Age;}
     public void SetAge(int value) {
-        if (value>CGV.GetLifeSpan()) {
+        if (value>CurrentGeneValues.GetLifeSpan()) {
             Alive = false;
         } else {
             Age = value;
@@ -151,7 +151,7 @@ public class CreatureVitals {
             Maturity=1.0f;
         }
     }
-    public float GetCurrentMaxEnergyStorage(){return CGV.GetMaxStoredEnergy() * GetMaturity();}
+    public float GetCurrentMaxEnergyStorage(){return CurrentGeneValues.GetMaxStoredEnergy() * GetMaturity();}
     public float GetTotalStomachContent(){return StomachContent.GetTotalContent();}
     public float GetCurrentStomachSize(){return StomachSize * GetMaturity();}
     public float RemoveMeatStomachContent(float meat){
@@ -160,7 +160,7 @@ public class CreatureVitals {
     public float RemovePlantStomachContent(float plant){
         return StomachContent.RemovePlantContent(plant);
     }
-    public float GetCurrentVisionDistance(){return CGV.GetVisionDistance()* GetMaturity();}
-    public float GetVisionDominancePercentage(){return CGV.GetVisionDominancePercentage();}
-    public float GetScentDominancePercentage(){return CGV.GetScentDominancePercentage();}
+    public float GetCurrentVisionDistance(){return CurrentGeneValues.GetVisionDistance()* GetMaturity();}
+    public float GetVisionDominancePercentage(){return CurrentGeneValues.GetVisionDominancePercentage();}
+    public float GetScentDominancePercentage(){return CurrentGeneValues.GetScentDominancePercentage();}
 }

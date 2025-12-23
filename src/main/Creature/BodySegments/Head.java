@@ -36,13 +36,19 @@ public class Head extends BodySegment {
 
 
         w.fill(GetSegmentColor().hashCode());
+
+        // disable drawing the outlines
         w.noStroke();
+
         //Push current display matrix to stack
         w.pushMatrix();
+        
         //Make new one with X,Y the new 0,0
         w.translate(GetSegmentX(),GetSegmentY());
+
         //rotate it so it is angled
         w.rotate(GetSegmentAngle());
+
         //if(gShowID){
         //   w.textSize(14);
         //   w.fill(0);
@@ -52,7 +58,9 @@ public class Head extends BodySegment {
         // arc(0,0,2*(GetSegmentWidth()+HeadShape),2*GetSegmentHeight(),-0.5*PI,+0.5*PI);
         //circle wants diameter so double radius
         w.ellipse(0,0,-2*GetSegmentHeight(),2*GetSegmentWidth());
+
         w.scale(scale);
+        
         w.popMatrix();
     }
 

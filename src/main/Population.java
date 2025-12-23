@@ -11,18 +11,22 @@ import static main.Main.gGenesDef;
 
 public class Population {
     private final ArrayList<Creature> population;
-    int maxPop=2;
+    int maxPop=0;
 
     public Population() {
         population=new ArrayList<>();
     }
 
     public void CreatePopulation(int MaxPop,int Width,int Height){
+        System.out.println("Creating Population of size: " + MaxPop);
         maxPop=MaxPop;
         for(int i=0;i<maxPop;i++){
             Genome g=BuildRandomGenome();
-            g.ExportGenome();
+            // g.ExportGenome();
             Creature creature = new Creature((float) Width /2, (float) Height /2,g,UUID.randomUUID());
+
+            System.out.println("Created Creature ID: " + creature);
+
             AddPopulation(creature);
         }
     }
@@ -113,6 +117,8 @@ public class Population {
 
         newGenome.SetGeneInChromosome(GeneID.ReceptorsSensitivity, gGenesDef.GetGene(GeneID.ReceptorsSensitivity).RandomValue());
         newGenome.SetGeneInChromosome(GeneID.ScentDominancePercentage, gGenesDef.GetGene(GeneID.ScentDominancePercentage).RandomValue());
+
+        System.out.println("Built Random Genome ID: " + newGenome.toString());
 
         return newGenome;
     }

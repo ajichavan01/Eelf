@@ -7,7 +7,7 @@ import main.Nourishments.NourishmentTypes;
 import main.Nourishments.PlantNourishment;
 
 public class CreatureMetabolism {
-    private final CreatureGeneValues CGV;
+    private final CreatureGeneValues CurrentGeneValues;
     private final CreatureVitals Vitals;
     private final CreatureBody Body;
     private float EnergyUsedBase;
@@ -16,7 +16,7 @@ public class CreatureMetabolism {
     private float EnergyUsedForMovement;
     private float EnergyUsedDuringBirthRecoveryTime;
     public CreatureMetabolism(Creature currentCreature){
-        CGV= currentCreature.GetGenes();
+        CurrentGeneValues= currentCreature.GetGenes();
         Vitals= currentCreature.GetVitals();
         Body= currentCreature.GetBody();
         //BP = 100 * maturity * pow(Size Ratio (gene), 2) - Max energy that can be stored.
@@ -41,18 +41,18 @@ public class CreatureMetabolism {
         float PlantDigestionAmount;
 
         if (Vitals.GetTotalStomachContent()>0){
-            float digestionAmount= GameParameters.BaseDigestionAmount*CGV.GetDigestionRate();
+            float digestionAmount= GameParameters.BaseDigestionAmount*CurrentGeneValues.GetDigestionRate();
             if (Vitals.GetMeatStomachContent()>0){
                 MeatDigestionAmount=Vitals.RemoveMeatStomachContent(digestionAmount);
                 digestionAmount=digestionAmount-MeatDigestionAmount;
-                energyCreated=MeatDigestionAmount*CGV.GetMeatToEnergyConversionRate();
+                energyCreated=MeatDigestionAmount*CurrentGeneValues.GetMeatToEnergyConversionRate();
             }
             if (Vitals.GetPlantStomachContent()>0) {
                 PlantDigestionAmount = Vitals.RemovePlantStomachContent(digestionAmount);
-                energyCreated = PlantDigestionAmount * CGV.GetPlantToEnergyConversionRate();
+                energyCreated = PlantDigestionAmount * CurrentGeneValues.GetPlantToEnergyConversionRate();
             }
         }
-        Vitals.IncreaseHealth(CGV.GetIncreaseHealthPercentage()*energyCreated);
+        Vitals.IncreaseHealth(CurrentGeneValues.GetIncreaseHealthPercentage()*energyCreated);
         return energyCreated;
     }
 

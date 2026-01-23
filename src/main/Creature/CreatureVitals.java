@@ -96,6 +96,11 @@ public class CreatureVitals {
         }
     }
     public int GetAge(){return Age;}
+
+    /**
+     * Set the age of the creature. If the age exceeds lifespan, the creature is marked as not alive.
+     * @param value - age
+     */
     public void SetAge(int value) {
         if (value>CurrentGeneValues.GetLifeSpan()) {
             Alive = false;

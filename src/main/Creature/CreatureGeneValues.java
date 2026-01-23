@@ -1,4 +1,5 @@
 package main.Creature;
+
 import main.Genetics.GeneMinMax;
 import main.Genetics.Genome;
 import main.Genetics.GeneID;
@@ -6,10 +7,9 @@ import main.Genetics.GeneID;
 import java.awt.*;
 import java.util.ArrayList;
 
+public class CreatureGeneValues {
 
-public class CreatureGeneValues{
-
-    //variables set initial by genes
+    // variables set initial by genes
     private final float biteStrength;
     private final float birthRecoveryTime;
     private final float birthGestationEnergyCost;
@@ -56,7 +56,7 @@ public class CreatureGeneValues{
     private final float tailHeightPercentage;
     private final float tailWidthPercentage;
     private final float tailPresent;
-    //private final float flipperColorDeviation;
+    // private final float flipperColorDeviation;
     private final int flipperColorBlue;
     private final int flipperColorGreen;
     private final int flipperColorRed;
@@ -70,19 +70,27 @@ public class CreatureGeneValues{
     private final float visionDominancePercentage;
     private final float scentDominancePercentage;
 
-    public CreatureGeneValues(Genome genome){
+    public CreatureGeneValues(Genome genome) {
 
-        dna=genome;
+        dna = genome;
 
-System.out.println("DNA Genes Size: " + dna.toString());
+        System.out.println("DNA Genes Size: " + dna.toString());
 
         // Body-related genes
-        bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (0.01f * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
-        //bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
-        bodyHeight = GeneMinMax.BodyHeightMin + (dna.GetGene(GeneID.BodyHeight) * (GeneMinMax.BodyHeightMax-GeneMinMax.BodyHeightMin));
-        bodyWidth = GeneMinMax.BodyWidthMin + (dna.GetGene(GeneID.BodyWidth) * (GeneMinMax.BodyWidthMax-GeneMinMax.BodyWidthMin));
-        bodyTaper = GeneMinMax.BodyTapperMin + (dna.GetGene(GeneID.BodyTaper) * (GeneMinMax.BodyTapperMax-GeneMinMax.BodyTapperMin));
-        bodyDistanceBetweenSegments = bodyHeight * (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments) * (GeneMinMax.BodyDistanceBetweenSegmentsMax-GeneMinMax.BodyDistanceBetweenSegmentsMin)));
+        bodyLength = (int) Math
+                .floor(GeneMinMax.BodyLengthMin + (0.01f * (GeneMinMax.BodyLengthMax - GeneMinMax.BodyLengthMin)));
+        // bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin +
+        // (dna.GetGene(GeneID.BodyLength) *
+        // (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
+        bodyHeight = GeneMinMax.BodyHeightMin
+                + (dna.GetGene(GeneID.BodyHeight) * (GeneMinMax.BodyHeightMax - GeneMinMax.BodyHeightMin));
+        bodyWidth = GeneMinMax.BodyWidthMin
+                + (dna.GetGene(GeneID.BodyWidth) * (GeneMinMax.BodyWidthMax - GeneMinMax.BodyWidthMin));
+        bodyTaper = GeneMinMax.BodyTapperMin
+                + (dna.GetGene(GeneID.BodyTaper) * (GeneMinMax.BodyTapperMax - GeneMinMax.BodyTapperMin));
+        bodyDistanceBetweenSegments = bodyHeight
+                * (GeneMinMax.BodyDistanceBetweenSegmentsMin + (dna.GetGene(GeneID.BodyDistanceBetweenSegments)
+                        * (GeneMinMax.BodyDistanceBetweenSegmentsMax - GeneMinMax.BodyDistanceBetweenSegmentsMin)));
         bodyColorRed = (int) Math.floor(dna.GetGene(GeneID.BodyColorRed));
         bodyColorGreen = (int) Math.floor(dna.GetGene(GeneID.BodyColorGreen));
         bodyColorBlue = (int) Math.floor(dna.GetGene(GeneID.BodyColorBlue));
@@ -90,17 +98,21 @@ System.out.println("DNA Genes Size: " + dna.toString());
 
         // Flipper-related genes
         flipperPresent = dna.GetGene(GeneID.FlipperPresent);
-        flipperHeight = GeneMinMax.FlipperHeightMin + (dna.GetGene(GeneID.FlipperHeight) * (GeneMinMax.FlipperHeightMax-GeneMinMax.FlipperHeightMin));
-        flipperWidth = GeneMinMax.FlipperWidthMin + (dna.GetGene(GeneID.FlipperWidth) * (GeneMinMax.FlipperWidthMax-GeneMinMax.FlipperWidthMin));
-        //flipperColorDeviation = -0.5f; //dna.GetGene(GeneID.FlipperColorDeviation);
+        flipperHeight = GeneMinMax.FlipperHeightMin
+                + (dna.GetGene(GeneID.FlipperHeight) * (GeneMinMax.FlipperHeightMax - GeneMinMax.FlipperHeightMin));
+        flipperWidth = GeneMinMax.FlipperWidthMin
+                + (dna.GetGene(GeneID.FlipperWidth) * (GeneMinMax.FlipperWidthMax - GeneMinMax.FlipperWidthMin));
+        // flipperColorDeviation = -0.5f; //dna.GetGene(GeneID.FlipperColorDeviation);
         flipperColorRed = (int) Math.floor(dna.GetGene(GeneID.FlipperColorRed));
         flipperColorGreen = (int) Math.floor(dna.GetGene(GeneID.FlipperColorGreen));
         flipperColorBlue = (int) Math.floor(dna.GetGene(GeneID.FlipperColorBlue));
 
         // Tail-related genes
         tailPresent = dna.GetGene(GeneID.TailPresent);
-        tailHeightPercentage = GeneMinMax.TailHeightMinPercentage + (dna.GetGene(GeneID.TailHeightPercentage) * (GeneMinMax.TailHeightMaxPercentage-GeneMinMax.TailHeightMinPercentage));
-        tailWidthPercentage = GeneMinMax.TailWidthMinPercentage + (dna.GetGene(GeneID.TailWidthPercentage) * (GeneMinMax.TailWidthMaxPercentage-GeneMinMax.TailWidthMinPercentage));
+        tailHeightPercentage = GeneMinMax.TailHeightMinPercentage + (dna.GetGene(GeneID.TailHeightPercentage)
+                * (GeneMinMax.TailHeightMaxPercentage - GeneMinMax.TailHeightMinPercentage));
+        tailWidthPercentage = GeneMinMax.TailWidthMinPercentage + (dna.GetGene(GeneID.TailWidthPercentage)
+                * (GeneMinMax.TailWidthMaxPercentage - GeneMinMax.TailWidthMinPercentage));
         tailColorRed = (int) Math.floor(dna.GetGene(GeneID.TailColorRed));
         tailColorGreen = (int) Math.floor(dna.GetGene(GeneID.TailColorGreen));
         tailColorBlue = (int) Math.floor(dna.GetGene(GeneID.TailColorBlue));
@@ -109,7 +121,8 @@ System.out.println("DNA Genes Size: " + dna.toString());
         eyeColorRed = (int) Math.floor(dna.GetGene(GeneID.EyeColorRed));
         eyeColorGreen = (int) Math.floor(dna.GetGene(GeneID.EyeColorGreen));
         eyeColorBlue = (int) Math.floor(dna.GetGene(GeneID.EyeColorBlue));
-        eyeSize = GeneMinMax.EyeSizeMin + (dna.GetGene(GeneID.EyeSize) * (GeneMinMax.EyeSizeMax-GeneMinMax.EyeSizeMin));
+        eyeSize = GeneMinMax.EyeSizeMin
+                + (dna.GetGene(GeneID.EyeSize) * (GeneMinMax.EyeSizeMax - GeneMinMax.EyeSizeMin));
         eyesPresent = dna.GetGene(GeneID.EyesPresent);
 
         // Mouth-related genes
@@ -118,46 +131,70 @@ System.out.println("DNA Genes Size: " + dna.toString());
         mouthColorBlue = (int) Math.floor(dna.GetGene(GeneID.MouthColorBlue));
         mouthSize = bodyHeight * (dna.GetGene(GeneID.MouthSize));
         mouthPresent = dna.GetGene(GeneID.MouthPresent);
-        biteStrength = GeneMinMax.BiteStrengthMin + (dna.GetGene(GeneID.BiteStrength) * (GeneMinMax.BiteStrengthMax - GeneMinMax.BiteStrengthMin));
+        biteStrength = GeneMinMax.BiteStrengthMin
+                + (dna.GetGene(GeneID.BiteStrength) * (GeneMinMax.BiteStrengthMax - GeneMinMax.BiteStrengthMin));
 
         // Vision-related genes
-        visionAngle = GeneMinMax.VisionAngleMin + (dna.GetGene(GeneID.VisionAngle) * (GeneMinMax.VisionAngleMax-GeneMinMax.VisionAngleMin));
-        visionClarity = GeneMinMax.VisionClarityMin + (dna.GetGene(GeneID.VisionClarity) * (GeneMinMax.VisionClarityMax-GeneMinMax.VisionClarityMin));
-        visionDistance = GeneMinMax.VisionDistanceMin + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax-GeneMinMax.VisionDistanceMin));
-        visionScanFreq = GeneMinMax.VisionScanFreqMin + (dna.GetGene(GeneID.VisionScanFreq) * (GeneMinMax.VisionScanFreqMax-GeneMinMax.VisionScanFreqMin));
-        visionDominancePercentage = GeneMinMax.VisionDominanceMin + (dna.GetGene(GeneID.VisionDominancePercentage) * (GeneMinMax.VisionDominanceMax-GeneMinMax.VisionDominanceMin));
+        visionAngle = GeneMinMax.VisionAngleMin
+                + (dna.GetGene(GeneID.VisionAngle) * (GeneMinMax.VisionAngleMax - GeneMinMax.VisionAngleMin));
+        visionClarity = GeneMinMax.VisionClarityMin
+                + (dna.GetGene(GeneID.VisionClarity) * (GeneMinMax.VisionClarityMax - GeneMinMax.VisionClarityMin));
+        visionDistance = GeneMinMax.VisionDistanceMin
+                + (dna.GetGene(GeneID.VisionDistance) * (GeneMinMax.VisionDistanceMax - GeneMinMax.VisionDistanceMin));
+        visionScanFreq = GeneMinMax.VisionScanFreqMin
+                + (dna.GetGene(GeneID.VisionScanFreq) * (GeneMinMax.VisionScanFreqMax - GeneMinMax.VisionScanFreqMin));
+        visionDominancePercentage = GeneMinMax.VisionDominanceMin + (dna.GetGene(GeneID.VisionDominancePercentage)
+                * (GeneMinMax.VisionDominanceMax - GeneMinMax.VisionDominanceMin));
 
         // Scent-related genes
-        scentDominancePercentage = GeneMinMax.ScentDominanceMin + (dna.GetGene(GeneID.ScentDominancePercentage) * (GeneMinMax.ScentDominanceMax-GeneMinMax.ScentDominanceMin));
+        scentDominancePercentage = GeneMinMax.ScentDominanceMin + (dna.GetGene(GeneID.ScentDominancePercentage)
+                * (GeneMinMax.ScentDominanceMax - GeneMinMax.ScentDominanceMin));
 
         // Head and shape
         headShape = dna.GetGene(GeneID.HeadShape);
 
         // Movement and speed
-        speed = GeneMinMax.MovementSpeedMin + (dna.GetGene(GeneID.MovementSpeed) * (GeneMinMax.MovementSpeedMax-GeneMinMax.MovementSpeedMin));
+        speed = GeneMinMax.MovementSpeedMin
+                + (dna.GetGene(GeneID.MovementSpeed) * (GeneMinMax.MovementSpeedMax - GeneMinMax.MovementSpeedMin));
         maxTurnAngle = dna.GetGene(GeneID.MaxTurnAngle);
 
         // Digestion and energy
         digestionRate = dna.GetGene(GeneID.DigestionRate);
         plantToEnergyConversionRate = dna.GetGene(GeneID.PlantToEnergyConversionRate);
         meatToEnergyConversionRate = dna.GetGene(GeneID.MeatToEnergyConversionRate);
-        stomachSize = GeneMinMax.StomachSizeMin + (dna.GetGene(GeneID.StomachSize) * (GeneMinMax.StomachSizeMax-GeneMinMax.StomachSizeMin));
-        maxStoredEnergy = GeneMinMax.EnergyStorageMin + (dna.GetGene(GeneID.MaxStoredEnergy) * (GeneMinMax.EnergyStorageMax-GeneMinMax.EnergyStorageMin));
+        stomachSize = GeneMinMax.StomachSizeMin
+                + (dna.GetGene(GeneID.StomachSize) * (GeneMinMax.StomachSizeMax - GeneMinMax.StomachSizeMin));
+        maxStoredEnergy = GeneMinMax.EnergyStorageMin
+                + (dna.GetGene(GeneID.MaxStoredEnergy) * (GeneMinMax.EnergyStorageMax - GeneMinMax.EnergyStorageMin));
 
         // Birth and gestation
-        birthRecoveryTime = GeneMinMax.BirthRecoveryMin + (dna.GetGene(GeneID.BirthRecoveryTime) * (GeneMinMax.BirthRecoveryMax-GeneMinMax.BirthRecoveryMin));
-        birthEnergyCost = GeneMinMax.BirthEnergyCostMin + (dna.GetGene(GeneID.BirthEnergyCost) * (GeneMinMax.BirthEnergyCostMax-GeneMinMax.BirthEnergyCostMin));
-        birthGestationEnergyCost = GeneMinMax.BirthGestationEnergyCostMin + (dna.GetGene(GeneID.BirthGestationEnergyCost) * (GeneMinMax.BirthGestationEnergyCostMax-GeneMinMax.BirthGestationEnergyCostMin));
-        gestationPeriod = GeneMinMax.GestationPeriodMin + (dna.GetGene(GeneID.GestationPeriod) * (GeneMinMax.GestationPeriodMax-GeneMinMax.GestationPeriodMin));
+        birthRecoveryTime = GeneMinMax.BirthRecoveryMin
+                + (dna.GetGene(GeneID.BirthRecoveryTime) * (GeneMinMax.BirthRecoveryMax - GeneMinMax.BirthRecoveryMin));
+        birthEnergyCost = GeneMinMax.BirthEnergyCostMin + (dna.GetGene(GeneID.BirthEnergyCost)
+                * (GeneMinMax.BirthEnergyCostMax - GeneMinMax.BirthEnergyCostMin));
+        birthGestationEnergyCost = GeneMinMax.BirthGestationEnergyCostMin
+                + (dna.GetGene(GeneID.BirthGestationEnergyCost)
+                        * (GeneMinMax.BirthGestationEnergyCostMax - GeneMinMax.BirthGestationEnergyCostMin));
+        gestationPeriod = GeneMinMax.GestationPeriodMin + (dna.GetGene(GeneID.GestationPeriod)
+                * (GeneMinMax.GestationPeriodMax - GeneMinMax.GestationPeriodMin));
 
         // Age and lifespan
-        lifeSpan = GeneMinMax.LifeSpanMax + (dna.GetGene(GeneID.LifeSpan) * (GeneMinMax.LifeSpanMax-GeneMinMax.LifeSpanMin));
-        matureAgePercentage = GeneMinMax.MatureAgePercentageMin + (dna.GetGene(GeneID.MatureAgePercentage) * (GeneMinMax.MatureAgePercentageMax-GeneMinMax.MatureAgePercentageMin));
-        seniorAgePercentage = GeneMinMax.SeniorAgePercentageMin + (dna.GetGene(GeneID.SeniorAgePercentage) * (GeneMinMax.SeniorAgePercentageMax-GeneMinMax.SeniorAgePercentageMin));
+        // Generate random lifespan between min and max values for genetic diversity
+        float geneBasedLifeSpan = GeneMinMax.LifeSpanMin
+                + (dna.GetGene(GeneID.LifeSpan) * (GeneMinMax.LifeSpanMax - GeneMinMax.LifeSpanMin));
+        // Add random variation to make each creature unique (±20% variation)
+        float randomVariation = (float) (0.8 + Math.random() * 0.4); // 0.8 to 1.2 multiplier
+        lifeSpan = 30 * randomVariation;
+        matureAgePercentage = GeneMinMax.MatureAgePercentageMin + (dna.GetGene(GeneID.MatureAgePercentage)
+                * (GeneMinMax.MatureAgePercentageMax - GeneMinMax.MatureAgePercentageMin));
+        seniorAgePercentage = GeneMinMax.SeniorAgePercentageMin + (dna.GetGene(GeneID.SeniorAgePercentage)
+                * (GeneMinMax.SeniorAgePercentageMax - GeneMinMax.SeniorAgePercentageMin));
 
         // Health and toughness
-        skinToughness = GeneMinMax.SkinToughnessMin + (dna.GetGene(GeneID.SkinToughness) * (GeneMinMax.SkinToughnessMax-GeneMinMax.SkinToughnessMin));
-        maxHealth = GeneMinMax.HealthMin + (dna.GetGene(GeneID.MaxHealth) * (GeneMinMax.HealthMax-GeneMinMax.HealthMin));
+        skinToughness = GeneMinMax.SkinToughnessMin
+                + (dna.GetGene(GeneID.SkinToughness) * (GeneMinMax.SkinToughnessMax - GeneMinMax.SkinToughnessMin));
+        maxHealth = GeneMinMax.HealthMin
+                + (dna.GetGene(GeneID.MaxHealth) * (GeneMinMax.HealthMax - GeneMinMax.HealthMin));
         healthIncreasePercentage = dna.GetGene(GeneID.IncreaseHealthPercentage);
 
         // Receptors
@@ -165,230 +202,250 @@ System.out.println("DNA Genes Size: " + dna.toString());
 
     }
 
-    public Genome GetBaseDNA(){
+    public Genome GetBaseDNA() {
         return dna;
     }
 
-    public float GetBodyLength(){
+    public float GetBodyLength() {
         return bodyLength;
     }
 
-    public float GetBodyHeight(){
+    public float GetBodyHeight() {
         return bodyHeight;
     }
 
-    public float GetHeadShape(){
+    public float GetHeadShape() {
         return headShape;
     }
 
-    public float GetBodyWidth(){
-        if (bodyWidth<0) bodyWidth=0;
-        return bodyHeight+bodyWidth;
+    public float GetBodyWidth() {
+        if (bodyWidth < 0)
+            bodyWidth = 0;
+        return bodyHeight + bodyWidth;
     }
 
-    public float GetBodyTaper(){
+    public float GetBodyTaper() {
         return bodyTaper;
     }
 
-    public float GetBodyDistanceBetweenSegments(){
+    public float GetBodyDistanceBetweenSegments() {
         return bodyDistanceBetweenSegments;
     }
 
-    public float GetFlipperPresent(){
+    public float GetFlipperPresent() {
         return flipperPresent;
     }
 
-    public float GetFlipperHeight(){
+    public float GetFlipperHeight() {
         return flipperHeight;
     }
 
-    public float GetFlipperWidth(){
+    public float GetFlipperWidth() {
         return flipperWidth;
     }
 
-    //public float GetFlipperColorDeviation(){return flipperColorDeviation;}
-    public Color GetFlipperColor(){
-        return new Color(flipperColorRed,flipperColorGreen,flipperColorBlue);
+    // public float GetFlipperColorDeviation(){return flipperColorDeviation;}
+    public Color GetFlipperColor() {
+        return new Color(flipperColorRed, flipperColorGreen, flipperColorBlue);
     }
 
-    public ArrayList<Integer> GetFlipperColorRGB(){
-        ArrayList<Integer> flipperColor=new ArrayList<>();
+    public ArrayList<Integer> GetFlipperColorRGB() {
+        ArrayList<Integer> flipperColor = new ArrayList<>();
         flipperColor.add(flipperColorRed);
         flipperColor.add(flipperColorGreen);
         flipperColor.add(flipperColorBlue);
         return flipperColor;
     }
 
-    public float GetTailPresent(){return tailPresent;
+    public float GetTailPresent() {
+        return tailPresent;
     }
 
-    public float GetTailHeightPercentage(){
+    public float GetTailHeightPercentage() {
         return tailHeightPercentage;
     }
 
-    public float GetTailWidthPercentage(){return tailWidthPercentage;}
-
-    public Color GetTailColor(){
-        return new Color(tailColorRed,tailColorGreen,tailColorBlue);
+    public float GetTailWidthPercentage() {
+        return tailWidthPercentage;
     }
 
-    public ArrayList<Integer> GetTailColorRGB(){
-        ArrayList<Integer> tailColor=new ArrayList<>();
+    public Color GetTailColor() {
+        return new Color(tailColorRed, tailColorGreen, tailColorBlue);
+    }
+
+    public ArrayList<Integer> GetTailColorRGB() {
+        ArrayList<Integer> tailColor = new ArrayList<>();
         tailColor.add(tailColorRed);
         tailColor.add(tailColorGreen);
         tailColor.add(tailColorBlue);
         return tailColor;
     }
 
-    public float GetVisionAngle(){
+    public float GetVisionAngle() {
         return visionAngle;
     }
 
-    public float GetVisionClarity(){
+    public float GetVisionClarity() {
         return visionClarity;
     }
 
-    public float GetVisionDistance(){
+    public float GetVisionDistance() {
         return visionDistance;
     }
 
-    public Color GetEyeColor(){
-        return new Color(eyeColorRed,eyeColorGreen,eyeColorBlue);
+    public Color GetEyeColor() {
+        return new Color(eyeColorRed, eyeColorGreen, eyeColorBlue);
     }
 
-    public ArrayList<Integer> GetEyeColorRGB(){
-        ArrayList<Integer> eyeColor=new ArrayList<>();
+    public ArrayList<Integer> GetEyeColorRGB() {
+        ArrayList<Integer> eyeColor = new ArrayList<>();
         eyeColor.add(eyeColorRed);
         eyeColor.add(eyeColorGreen);
         eyeColor.add(eyeColorBlue);
         return eyeColor;
     }
 
-    public float GetEyeSize(){
+    public float GetEyeSize() {
         return eyeSize;
     }
 
-    public float GetEyesPresent(){
+    public float GetEyesPresent() {
         return eyesPresent;
     }
 
-    public float GetSpeed(){
+    public float GetSpeed() {
         return speed;
     }
 
-    public Color GetBodyColor(){
-        return new Color(bodyColorRed,bodyColorGreen,bodyColorBlue);
+    public Color GetBodyColor() {
+        return new Color(bodyColorRed, bodyColorGreen, bodyColorBlue);
     }
 
-    public ArrayList<Integer> GetBodyColorRGB(){
-        ArrayList<Integer> bodyColor=new ArrayList<>();
+    public ArrayList<Integer> GetBodyColorRGB() {
+        ArrayList<Integer> bodyColor = new ArrayList<>();
         bodyColor.add(bodyColorRed);
         bodyColor.add(bodyColorGreen);
         bodyColor.add(bodyColorBlue);
         return bodyColor;
     }
 
-    public float GetVisionScanFreq(){
+    public float GetVisionScanFreq() {
         return visionScanFreq;
     }
 
-    public float GetMouthSize(){
+    public float GetMouthSize() {
         return mouthSize;
     }
 
-    public Color GetMouthColor(){
-        return new Color(mouthColorRed,mouthColorGreen,mouthColorBlue);
+    public Color GetMouthColor() {
+        return new Color(mouthColorRed, mouthColorGreen, mouthColorBlue);
     }
 
-    public ArrayList<Integer> GetMouthColorRGB(){
-        ArrayList<Integer> mouthColor=new ArrayList<>();
+    public ArrayList<Integer> GetMouthColorRGB() {
+        ArrayList<Integer> mouthColor = new ArrayList<>();
         mouthColor.add(mouthColorRed);
         mouthColor.add(mouthColorGreen);
         mouthColor.add(mouthColorBlue);
         return mouthColor;
     }
 
-    public float GetBiteStrength(){
+    public float GetBiteStrength() {
         return biteStrength;
     }
 
-    public float GetMouthPresent(){
+    public float GetMouthPresent() {
         return mouthPresent;
     }
 
-    public float GetMaxTurnAngle(){
+    public float GetMaxTurnAngle() {
         return maxTurnAngle;
     }
 
-    public float GetLifeSpan(){
+    public float GetLifeSpan() {
         return lifeSpan;
     }
 
-    public float GetSkinToughness(){return skinToughness;}
+    public float GetSkinToughness() {
+        return skinToughness;
+    }
 
-    public float GetSeniorAgePercentage(){
+    public float GetSeniorAgePercentage() {
         return seniorAgePercentage;
     }
 
-    public float GetMatureAgePercentage(){
+    public float GetMatureAgePercentage() {
         return matureAgePercentage;
     }
 
-    public float GetStomachSize(){
+    public float GetStomachSize() {
         return stomachSize;
     }
 
-    public float GetMaxStoredEnergy(){
+    public float GetMaxStoredEnergy() {
         return maxStoredEnergy;
     }
 
-    public float GetDigestionRate(){
+    public float GetDigestionRate() {
         return digestionRate;
     }
 
-    public float GetPlantToEnergyConversionRate(){
+    public float GetPlantToEnergyConversionRate() {
         return plantToEnergyConversionRate;
     }
-    public float GetMeatToEnergyConversionRate(){return meatToEnergyConversionRate;
+
+    public float GetMeatToEnergyConversionRate() {
+        return meatToEnergyConversionRate;
     }
 
-    public float GetBirthGestationEnergyCost(){
+    public float GetBirthGestationEnergyCost() {
         return birthGestationEnergyCost;
     }
 
-    public float GetBirthRecoveryTime(){return birthRecoveryTime;}
+    public float GetBirthRecoveryTime() {
+        return birthRecoveryTime;
+    }
 
-    public float GetBirthEnergyCost(){
+    public float GetBirthEnergyCost() {
         return birthEnergyCost;
     }
 
-    public float GetGestationPeriod(){
+    public float GetGestationPeriod() {
         return gestationPeriod;
     }
 
-    public float GetReceptorSensitivity(){
+    public float GetReceptorSensitivity() {
         return receptorSensitivity;
     }
 
-    public float GetMaxHealth() {return maxHealth;}
+    public float GetMaxHealth() {
+        return maxHealth;
+    }
 
-    public float GetIncreaseHealthPercentage() {return healthIncreasePercentage;}
+    public float GetIncreaseHealthPercentage() {
+        return healthIncreasePercentage;
+    }
 
-    public float GetMassPercentage(){return massPercentage;}
+    public float GetMassPercentage() {
+        return massPercentage;
+    }
 
-    public float GetVisionDominancePercentage(){return visionDominancePercentage;}
+    public float GetVisionDominancePercentage() {
+        return visionDominancePercentage;
+    }
 
-    public float GetScentDominancePercentage(){return scentDominancePercentage;}
-    //public String ExportDNA(){
-    //  String newdna="";
-    //  for(int i=0;i<dna.size()-1;i++){
-    //      BigDecimal bd=new BigDecimal(dna.get(i));
-    //      if (i==0){
-    //        newdna+=String.valueOf(bd.setScale(2,RoundingMode.HALF_UP));
-    //      } else {
-    //        newdna+= "," + String.valueOf(bd.setScale(2,RoundingMode.HALF_UP));
-    //      }
-    //  }
-    //  return newdna;
-    //}
+    public float GetScentDominancePercentage() {
+        return scentDominancePercentage;
+    }
+    // public String ExportDNA(){
+    // String newdna="";
+    // for(int i=0;i<dna.size()-1;i++){
+    // BigDecimal bd=new BigDecimal(dna.get(i));
+    // if (i==0){
+    // newdna+=String.valueOf(bd.setScale(2,RoundingMode.HALF_UP));
+    // } else {
+    // newdna+= "," + String.valueOf(bd.setScale(2,RoundingMode.HALF_UP));
+    // }
+    // }
+    // return newdna;
+    // }
 }

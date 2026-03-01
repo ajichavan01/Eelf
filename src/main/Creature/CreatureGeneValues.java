@@ -74,14 +74,10 @@ public class CreatureGeneValues {
 
         dna = genome;
 
-        System.out.println("DNA Genes Size: " + dna.toString());
-
         // Body-related genes
         bodyLength = (int) Math
-                .floor(GeneMinMax.BodyLengthMin + (0.01f * (GeneMinMax.BodyLengthMax - GeneMinMax.BodyLengthMin)));
-        // bodyLength = (int) Math.floor(GeneMinMax.BodyLengthMin +
-        // (dna.GetGene(GeneID.BodyLength) *
-        // (GeneMinMax.BodyLengthMax-GeneMinMax.BodyLengthMin)));
+                .floor(GeneMinMax.BodyLengthMin
+                        + (dna.GetGene(GeneID.BodyLength) * (GeneMinMax.BodyLengthMax - GeneMinMax.BodyLengthMin)));
         bodyHeight = GeneMinMax.BodyHeightMin
                 + (dna.GetGene(GeneID.BodyHeight) * (GeneMinMax.BodyHeightMax - GeneMinMax.BodyHeightMin));
         bodyWidth = GeneMinMax.BodyWidthMin

@@ -46,10 +46,13 @@ public class Genome {
         GeneBase gene = genesDef.GetGene(GeneId);
 
         int chrome = gene.GetChromosome();
-        System.out.print(GeneId + " - " + GetGeneDef(GeneId) + " - " + chrome);
+        // System.out.print(GeneId + " - " + GetGeneDef(GeneId) + " - " + chrome);
+        
         Chromosome c = chromosomes.get(chrome);
         int location = gene.GetGeneLocationOnChromosome();
-        System.out.println(":" + location + "=" + value);
+        
+        // System.out.println(":" + location + "=" + value);
+        
         c.SetGene(location, value);
 
         chromosomes.set(chrome, c);
@@ -89,17 +92,7 @@ public class Genome {
     // return newDNA;
     // }
 
-    public void ExportGenome() {
-        for (int i = 0; i < maxChromosomes - 1; i++) {
-            // print(i);
-            Chromosome Chromosome = chromosomes.get(i);
-            for (int j = 0; j < Chromosome.GetChromosomeSize(); j++) {
-                float geneValue = chromosomes.get(i).GetGene(j);
-                // print("(" + i + "," + j +"}" + geneValue);
-            }
-            // println();
-        }
-    }
+
 
     @Override
     public String toString() {

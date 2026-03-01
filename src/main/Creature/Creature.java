@@ -36,27 +36,36 @@ public class Creature {
     private ArrayList<ObjectInRange> SeenObjectsInRange;
 
     public Creature(float startX, float startY, Genome genome, UUID uuid) {
+        guid = uuid;
 
+        // Initialize all creature properties based on genome and starting location.
         Genes = new CreatureGeneValues(genome);
         Vitals = new CreatureVitals(this);
         Vitals.InitializeCreatureVitals(startX, startY, 0, 0, 5, uuid, UUID.randomUUID());
         Body = new CreatureBody(this);
         Physics = new CreaturePhysics(this);
         Olfactory = new CreatureOlfactory(this);
-        ObjectsInRange = new ArrayList<>();
         Vision = new CreatureVision(this);
         Metabolism = new CreatureMetabolism(this);
         DecisionEngine = new CreatureDecisionEngine(this);
 
-        guid = uuid;
+        // Initialize speed and turn rate based on genes. 
+        // These will be updated as the creature grows, but this sets the initial values for the newborn creature.
         Physics.SetBaseSpeed(Genes.GetSpeed());
         Speed = Physics.DetermineSpeed(BodyMass);
         Physics.SetBaseTurnRate(.025f);
         TurnAngle = Physics.DetermineTurnRate(Genes.GetFlipperWidth(), Genes.GetBodyWidth());
+
+        // Initialize vision based on genes
         Vision.InitializeVision(Genes.GetVisionAngle(), Vitals.GetCurrentVisionDistance(), Genes.GetVisionClarity());
+        
+        // Initialize body segments and mass based on genes
         Body.CreateBody(Vitals.GetX(), Vitals.GetY());
         BodyMass = Body.CalculateBodyMass();
         CreatureAction = Actions.NewDestination;
+        
+        // values initialized for movement and decision making
+        ObjectsInRange = new ArrayList<>();
         DistanceToTarget = 0;
         PreviousDistanceToTarget = 0;
         TargetObject = new ObjectInRange(0, 0, 0, ObjectInRangeType.Location, 0, 0);
@@ -338,8 +347,7 @@ public class Creature {
         w.text("Status: " + status, Vitals.GetX() + 20, Vitals.GetY() - 20);
         w.text("Age: " + Vitals.GetAge(), Vitals.GetX() + 20, Vitals.GetY() - 10);
         w.text("Lifespan: " + Vitals.GetLifeSpan(), Vitals.GetX() + 20, Vitals.GetY());
-        w.text("Maturity: " + Vitals.GetMaturity(), Vitals.GetX() + 20, Vitals.GetY() + 10);
-        w.text("Maturity age: " + Vitals.GetMaturityAge(), Vitals.GetX() + 20, Vitals.GetY() + 55);
+        w.text("Speed: " + Speed, Vitals.GetX() + 20, Vitals.GetY() + 10);
         Vision.Display(w, scale);
         w.circle(TargetObject.X(), TargetObject.Y(), 5);
     }

@@ -18,14 +18,12 @@ public class Population {
     }
 
     public void CreatePopulation(int MaxPop,int Width,int Height){
-        System.out.println("Creating Population of size: " + MaxPop);
         maxPop=MaxPop;
         for(int i=0;i<maxPop;i++){
             Genome g=BuildRandomGenome();
-            // g.ExportGenome();
+            
             Creature creature = new Creature((float) Width /2, (float) Height /2,g,UUID.randomUUID());
 
-            System.out.println("Created Creature ID: " + creature);
 
             AddPopulation(creature);
         }

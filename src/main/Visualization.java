@@ -12,7 +12,7 @@ public class Visualization extends PApplet {
     public void setup() {
 
         gWorld.CreatePopulation(GameParameters.MaxPop);
-        gWorld.CreateNourishment(GameParameters.MaxPlants, GameParameters.MaxMeat);
+        // gWorld.CreateNourishment(GameParameters.MaxPlants, GameParameters.MaxMeat);
 
     }
 

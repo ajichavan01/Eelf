@@ -22,8 +22,7 @@ public class World {
     static CreatureVisionWindow gCreatureVisionWindow;
     public float gTicks = 1;
 
-    private final int Width = 1000;
-    private final int Height = 800;
+
 
     public World() {
         // gCreatureStatsWindow=new CreatureStatsWindow();
@@ -35,21 +34,21 @@ public class World {
     }
 
     public void CreatePopulation(int maxPop) {
-        gPopulation.CreatePopulation(maxPop, Width, Height);
+        gPopulation.CreatePopulation(maxPop, GameParameters.Width, GameParameters.Height);
     }
 
     public void CreateNourishment(int maxPlants, int maxMeat) {
         for (int i = 0; i < maxPlants; i++) {
             PlantNourishment plantNourishment = new PlantNourishment();
-            plantNourishment.InitializeNourishment(gUtils.GetRandomNumber(10, Width - 10),
-                    gUtils.GetRandomNumber(10, Height - 10), gUtils.GetRandomNumber(10, 20), 100, new Color(0, 255, 0),
+            plantNourishment.InitializeNourishment(gUtils.GetRandomNumber(10, GameParameters.Width - 10),
+                    gUtils.GetRandomNumber(10, GameParameters.Height - 10), gUtils.GetRandomNumber(10, 20), 100, new Color(0, 255, 0),
                     0, 100);
             gNourishment.add(plantNourishment);
         }
         for (int i = 0; i < maxMeat; i++) {
             MeatNourishment meatNourishment = new MeatNourishment();
-            meatNourishment.InitializeNourishment(gUtils.GetRandomNumber(10, Width - 10),
-                    gUtils.GetRandomNumber(10, Height - 10), gUtils.GetRandomNumber(10, 20), 100, new Color(0, 255, 0),
+            meatNourishment.InitializeNourishment(gUtils.GetRandomNumber(10, GameParameters.Width - 10),
+                    gUtils.GetRandomNumber(10, GameParameters.Height - 10), gUtils.GetRandomNumber(10, 20), 100, new Color(0, 255, 0),
                     0, 100);
             gNourishment.add(meatNourishment);
         }

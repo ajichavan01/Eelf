@@ -14,7 +14,7 @@ public class CreatureGeneWindow {
         //Creating the Frame
         JFrame frame = new JFrame("Creature Genes");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 1000);
+        frame.setSize(GameParameters.Width, GameParameters.Height);
 
         Stats = new JTextPane();
         Stats.setSize(400,1000);

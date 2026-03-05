@@ -1,4 +1,5 @@
 package main.Creature;
+
 import main.FlagsOverride;
 import main.GameParameters;
 
@@ -27,145 +28,266 @@ public class CreatureVitals {
     private float StomachSize;
     private float Maturity;
 
-    public CreatureVitals(Creature currentCreature){
-        CurrentGeneValues= currentCreature.GetGenes();
+    public CreatureVitals(Creature currentCreature) {
+        CurrentGeneValues = currentCreature.GetGenes();
     }
 
-    public void InitializeCreatureVitals(float x, float y, float angle, float health,int age, UUID parentMale, UUID parentFemale){
-        X=x;
-        Y=y;
-        Angle=angle;
-        Health=health;
-        Age=age;
+    public void InitializeCreatureVitals(float x, float y, float angle, float health, int age, UUID parentMale,
+            UUID parentFemale) {
+        X = x;
+        Y = y;
+        Angle = angle;
+        Health = health;
+        Age = age;
 
-        LifeSpan= (int) CurrentGeneValues.GetLifeSpan();
-        MaturityAge= (int) (LifeSpan*CurrentGeneValues.GetMatureAgePercentage());
-        SeniorAge=(int) (LifeSpan*CurrentGeneValues.GetSeniorAgePercentage());
-        MaturityRate=( 1.0f /MaturityAge);
-        if (Age<MaturityAge){
-            Maturity=MaturityRate*Age;
+        LifeSpan = (int) CurrentGeneValues.GetLifeSpan();
+        MaturityAge = (int) (LifeSpan * CurrentGeneValues.GetMatureAgePercentage());
+        SeniorAge = (int) (LifeSpan * CurrentGeneValues.GetSeniorAgePercentage());
+        MaturityRate = (1.0f / MaturityAge);
+        if (Age < MaturityAge) {
+            Maturity = MaturityRate * Age;
         } else {
-            Maturity=0.01f;
+            Maturity = 0.01f;
         }
-        Alive=true;
-        Pregnant=false;
+        Alive = true;
+        Pregnant = false;
 
-        StomachContent=new CreatureStomachContent();
-        EnergyLevel=0.0f;
-        BirthRecoveryTime=0;
-        GestationPeriodCountDown=0;
+        StomachContent = new CreatureStomachContent();
+        EnergyLevel = 0.0f;
+        BirthRecoveryTime = 0;
+        GestationPeriodCountDown = 0;
 
-        ParentMaleID=parentMale;
-        ParentFemaleID=parentFemale;
+        ParentMaleID = parentMale;
+        ParentFemaleID = parentFemale;
 
-        StomachSize=CurrentGeneValues.GetStomachSize();
+        StomachSize = CurrentGeneValues.GetStomachSize();
 
     }
 
-    public float GetX(){return X;}
-    public void SetX(float value){
-        X=value;
+    public float GetX() {
+        return X;
     }
-    public float GetY(){return Y;}
-    public void SetY(float value){
-        Y=value;
+
+    public void SetX(float value) {
+        X = Math.max(0f, Math.min(value, GameParameters.Width - 1));
     }
-    public float GetAngle(){return Angle;}
+
+    public float GetY() {
+        return Y;
+    }
+
+    public void SetY(float value) {
+        Y = Math.max(0f, Math.min(value, GameParameters.Height - 1));
+    }
+
+    public float GetAngle() {
+        return Angle;
+    }
+
     public void SetAngle(float value) {
-        Angle=value;
+        Angle = value;
     }
-    public float GetHealth(){return Health;}
+
+    public float GetHealth() {
+        return Health;
+    }
+
     public void DecreaseHealth(float value) {
-        if (Health-value>0.0f){
-            Health-=value;
+        if (Health - value > 0.0f) {
+            Health -= value;
         } else {
-            Health=0.0f;
+            Health = 0.0f;
         }
         EvaluateHealth();
     }
-    public void IncreaseHealth(float value){
-        if (Health+value>CurrentGeneValues.GetMaxHealth()){
-            Health=CurrentGeneValues.GetMaxHealth();
+
+    public void IncreaseHealth(float value) {
+        if (Health + value > CurrentGeneValues.GetMaxHealth()) {
+            Health = CurrentGeneValues.GetMaxHealth();
         } else {
-            Health+=value;
+            Health += value;
         }
     }
-    public void EvaluateHealth(){
-        if (Health<0f){
-            Alive=false;
+
+    public void EvaluateHealth() {
+        if (Health < 0f) {
+            Alive = false;
         }
     }
-    public int GetAge(){return Age;}
+
+    public int GetAge() {
+        return Age;
+    }
 
     /**
-     * Set the age of the creature. If the age exceeds lifespan, the creature is marked as not alive.
+     * Set the age of the creature. If the age exceeds lifespan, the creature is
+     * marked as not alive.
+     * 
      * @param value - age
      */
     public void SetAge(int value) {
-        if (value>CurrentGeneValues.GetLifeSpan()) {
+        if (value > CurrentGeneValues.GetLifeSpan()) {
             Alive = false;
         } else {
             Age = value;
         }
     }
-    public int GetLifeSpan(){return LifeSpan;}
-    public int GetMaturityAge(){return MaturityAge;}
-    public int GetSeniorAge(){return SeniorAge;}
 
-    public boolean IsAlive() {return Alive;}
-    public void Died(){Alive=false;}
-    public boolean IsHungry(){
-        if (FlagsOverride.HungryOverride){
+    public int GetLifeSpan() {
+        return LifeSpan;
+    }
+
+    public int GetMaturityAge() {
+        return MaturityAge;
+    }
+
+    public int GetSeniorAge() {
+        return SeniorAge;
+    }
+
+    public boolean IsAlive() {
+        return Alive;
+    }
+
+    public void Died() {
+        Alive = false;
+    }
+
+    public boolean IsHungry() {
+        if (FlagsOverride.HungryOverride) {
             return true;
         }
-        return StomachContent.GetTotalContent()<GetCurrentStomachSize()-1;}
-    public boolean IsPregnant(){return Pregnant;}
-    public void IsPregnant(boolean value){Pregnant=value;}
-
-    public float GetMeatStomachContent(){return StomachContent.GetMeatContent();}
-    public float AddMeatStomachContent(float value){return StomachContent.AddMeatContent(GetCurrentStomachSize(),value);}
-    public float GetPlantStomachContent(){return StomachContent.GetPlantContent();}
-    public float AddPlantStomachContent(float value){return StomachContent.AddPlantContent(GetCurrentStomachSize(),value);}
-    public float GetEnergyLevel(){return EnergyLevel;}
-    public void SetEnergyLevel(float value){
-        if (value>GetCurrentMaxEnergyStorage()){
-            EnergyLevel=GetCurrentMaxEnergyStorage();
-        } else EnergyLevel = Math.max(value, 0.0f);
+        return StomachContent.GetTotalContent() < GetCurrentStomachSize() - 1;
     }
-    public int GetBirthRecoveryTime(){return BirthRecoveryTime;}
-    public void SetBirthRecoveryTime(int value){BirthRecoveryTime=value;}
-    public int GetGestationPeriodCountDown(){return GestationPeriodCountDown;}
-    public void IncreaseGestationPeriodCountDown(){GestationPeriodCountDown++;}
-    public void DecreaseGestationPeriodCountDown(){GestationPeriodCountDown--;}
-    public float GetUnbornHealthDamage(){return UnbornHealthDamage;}
-    public void IncreaseUnbornHealthDamage(){UnbornHealthDamage+= GameParameters.UnbornHealthDamagePerIncrease;}
-    public void SetGestationPeriodCountDown(int value){GestationPeriodCountDown=value;}
-    public UUID GetParentMaleID(){return ParentMaleID;}
-    public void SetParentMaleID(UUID value){ParentMaleID=value;}
-    public UUID GetParentFemaleID(){return ParentFemaleID;}
-    public void SetParentFemaleID(UUID value){ParentFemaleID=value;}
 
-    public float GetMaturity(){return Maturity;}
-    public void SetMaturity(float value){
-        Maturity=value;
+    public boolean IsPregnant() {
+        return Pregnant;
     }
-    public void IncreaseMaturity(){
-        if (Maturity<1.0f){
-            Maturity+=MaturityRate;
+
+    public void IsPregnant(boolean value) {
+        Pregnant = value;
+    }
+
+    public float GetMeatStomachContent() {
+        return StomachContent.GetMeatContent();
+    }
+
+    public float AddMeatStomachContent(float value) {
+        return StomachContent.AddMeatContent(GetCurrentStomachSize(), value);
+    }
+
+    public float GetPlantStomachContent() {
+        return StomachContent.GetPlantContent();
+    }
+
+    public float AddPlantStomachContent(float value) {
+        return StomachContent.AddPlantContent(GetCurrentStomachSize(), value);
+    }
+
+    public float GetEnergyLevel() {
+        return EnergyLevel;
+    }
+
+    public void SetEnergyLevel(float value) {
+        if (value > GetCurrentMaxEnergyStorage()) {
+            EnergyLevel = GetCurrentMaxEnergyStorage();
+        } else
+            EnergyLevel = Math.max(value, 0.0f);
+    }
+
+    public int GetBirthRecoveryTime() {
+        return BirthRecoveryTime;
+    }
+
+    public void SetBirthRecoveryTime(int value) {
+        BirthRecoveryTime = value;
+    }
+
+    public int GetGestationPeriodCountDown() {
+        return GestationPeriodCountDown;
+    }
+
+    public void IncreaseGestationPeriodCountDown() {
+        GestationPeriodCountDown++;
+    }
+
+    public void DecreaseGestationPeriodCountDown() {
+        GestationPeriodCountDown--;
+    }
+
+    public float GetUnbornHealthDamage() {
+        return UnbornHealthDamage;
+    }
+
+    public void IncreaseUnbornHealthDamage() {
+        UnbornHealthDamage += GameParameters.UnbornHealthDamagePerIncrease;
+    }
+
+    public void SetGestationPeriodCountDown(int value) {
+        GestationPeriodCountDown = value;
+    }
+
+    public UUID GetParentMaleID() {
+        return ParentMaleID;
+    }
+
+    public void SetParentMaleID(UUID value) {
+        ParentMaleID = value;
+    }
+
+    public UUID GetParentFemaleID() {
+        return ParentFemaleID;
+    }
+
+    public void SetParentFemaleID(UUID value) {
+        ParentFemaleID = value;
+    }
+
+    public float GetMaturity() {
+        return Maturity;
+    }
+
+    public void SetMaturity(float value) {
+        Maturity = value;
+    }
+
+    public void IncreaseMaturity() {
+        if (Maturity < 1.0f) {
+            Maturity += MaturityRate;
         } else {
-            Maturity=1.0f;
+            Maturity = 1.0f;
         }
     }
-    public float GetCurrentMaxEnergyStorage(){return CurrentGeneValues.GetMaxStoredEnergy() * GetMaturity();}
-    public float GetTotalStomachContent(){return StomachContent.GetTotalContent();}
-    public float GetCurrentStomachSize(){return StomachSize * GetMaturity();}
-    public float RemoveMeatStomachContent(float meat){
+
+    public float GetCurrentMaxEnergyStorage() {
+        return CurrentGeneValues.GetMaxStoredEnergy() * GetMaturity();
+    }
+
+    public float GetTotalStomachContent() {
+        return StomachContent.GetTotalContent();
+    }
+
+    public float GetCurrentStomachSize() {
+        return StomachSize * GetMaturity();
+    }
+
+    public float RemoveMeatStomachContent(float meat) {
         return StomachContent.RemoveMeatContent(meat);
     }
-    public float RemovePlantStomachContent(float plant){
+
+    public float RemovePlantStomachContent(float plant) {
         return StomachContent.RemovePlantContent(plant);
     }
-    public float GetCurrentVisionDistance(){return CurrentGeneValues.GetVisionDistance()* GetMaturity();}
-    public float GetVisionDominancePercentage(){return CurrentGeneValues.GetVisionDominancePercentage();}
-    public float GetScentDominancePercentage(){return CurrentGeneValues.GetScentDominancePercentage();}
+
+    public float GetCurrentVisionDistance() {
+        return CurrentGeneValues.GetVisionDistance() * GetMaturity();
+    }
+
+    public float GetVisionDominancePercentage() {
+        return CurrentGeneValues.GetVisionDominancePercentage();
+    }
+
+    public float GetScentDominancePercentage() {
+        return CurrentGeneValues.GetScentDominancePercentage();
+    }
 }

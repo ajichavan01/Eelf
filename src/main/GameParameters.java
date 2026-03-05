@@ -16,9 +16,11 @@ public class GameParameters {
     public static final float UnbornHealthDamagePerIncrease = 0.1f;
     public static final float MaxObjectInRangeRadius=300.0f;
     public static final float MaxScentDistance=255.0f;
-    public static final int MaxPop=1;
+    public static final int MaxPop=20;
     public static final int MaxPlants=3;
     public static final int MaxMeat=0;
+    public static final int Width = 1000;
+    public static final int Height = 800;
 }
 
 
